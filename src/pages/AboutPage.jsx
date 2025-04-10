@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
+// Removed unused DownloadResumeButton import if it was added accidentally
 
 const AboutPage = () => {
   const containerVariants = {
@@ -23,31 +24,16 @@ const AboutPage = () => {
     },
   };
   const skills = [
-    "JavaScript (ES6+)",
-    "React",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "HTML5",
-    "CSS3",
-    "Tailwind CSS",
-    "Git & GitHub",
-    "REST APIs",
-    "Python",
-    "SQL",
-    "PHP",
-    "MySQL",
-    "GraphQL",
-    "Next.js",
-    "TypeScript",
-    "Figma",
-    "Postman",
+    "JavaScript (ES6+)", "React", "Node.js", "Express", "MongoDB", "HTML5",
+    "CSS3", "Tailwind CSS", "Git & GitHub", "REST APIs", "Python", "SQL",
+    "PHP", "MySQL", "GraphQL", "Next.js", "TypeScript", "Figma", "Postman",
     "Responsive Design",
   ];
 
   return (
     <motion.div
-      className="bg-black text-white min-h-[calc(100vh-theme(spacing.32))] container mx-auto px-4 sm:px-6 lg:px-8 py-16"
+      // Base bg assumed from global styles, removed explicit bg-black here
+      className="text-white min-h-[calc(100vh-theme(spacing.32))] container mx-auto px-4 sm:px-6 lg:px-8 py-16"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -60,7 +46,12 @@ const AboutPage = () => {
         A Bit About <span className="text-white">Me</span>
       </motion.h1>
 
-      <motion.div className="max-w-3xl mx-auto text-lg text-gray-300 space-y-6 leading-relaxed text-center md:text-left">
+      {/* Bio Section */}
+      <motion.div
+        // Adjusted base text size for small screens
+        className="max-w-3xl mx-auto text-base md:text-lg text-gray-300 space-y-6 leading-relaxed text-center md:text-left"
+        //                         ^^^^^^^^^^^^^ Text starts smaller, increases on medium screens
+      >
         <motion.p variants={itemVariants}>
           Hey there! I'm Kabir. Ever since I first tinkered with a website's
           code (and probably broke something!), I've been hooked on
@@ -106,12 +97,15 @@ const AboutPage = () => {
         </motion.p>
       </motion.div>
 
+      {/* Skills Section */}
       <motion.div className="mt-16 text-center" variants={itemVariants}>
         <h2 className="text-3xl sm:text-4xl font-bold text-red-500 mb-10">
           My Tech <span className="text-white">Toolkit</span>
         </h2>
         <motion.p
-          className="text-gray-400 max-w-xl mx-auto mb-10"
+          // Adjusted base text size here too
+          className="text-sm md:text-base text-gray-400 max-w-xl mx-auto mb-10"
+          //         ^^^^^^^^^^^^^^ Text starts smaller, increases on medium screens
           variants={itemVariants}
         >
           Here are some of the main tools and technologies I enjoy working with:
@@ -120,7 +114,9 @@ const AboutPage = () => {
           {skills.map((skill) => (
             <motion.div
               key={skill}
-              className="bg-gray-900 border border-gray-800 p-4 rounded-lg text-center text-red-400 hover:bg-red-900/30 hover:border-red-700 hover:text-red-300 transition-all duration-200 font-medium shadow-sm"
+              // Adjusted skill text size for consistency
+              className="bg-gray-900 border border-gray-800 p-3 sm:p-4 rounded-lg text-center text-xs sm:text-sm text-red-400 hover:bg-red-900/30 hover:border-red-700 hover:text-red-300 transition-all duration-200 font-medium shadow-sm"
+              //                                                                                      ^^^^^^^^^^^^^^^^ Adjusted padding and text size
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -3 }}
             >

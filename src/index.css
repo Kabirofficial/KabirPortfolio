@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+body {
+  @apply bg-black text-gray-200;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
