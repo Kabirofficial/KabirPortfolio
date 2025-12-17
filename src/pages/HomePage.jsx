@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "/profile.webp";
+import logo from "/profile.png";
 
 const HomePage = () => {
   return (
