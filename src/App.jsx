@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import ScrollToTopButton from './components/ScrollToTopButton';
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 function App() {
   const { pathname } = useLocation();
@@ -12,13 +12,12 @@ function App() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#EFECE3] text-[#000000]">
+    <div className="min-h-screen flex flex-col bg-[#FDFCF8] font-sans text-slate-900 selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
-      <main className="grow container mx-auto px-4 sm:px-6 py-8">
+      <main className="grow">
         <Outlet />
       </main>
       <Footer />
-
       <ScrollToTopButton />
     </div>
   );
