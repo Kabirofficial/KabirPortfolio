@@ -1,82 +1,80 @@
-import { Link } from "react-router-dom";
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import logo from "/profile.png";
+import { Link } from "react-router-dom";
+import logo from "/profile.jpg";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-6 bg-[#FDFCF8] relative overflow-hidden">
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-200/30 rounded-full blur-3xl mix-blend-multiply filter opacity-70 animate-blob" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-200/30 rounded-full blur-3xl mix-blend-multiply filter opacity-70 animate-blob animation-delay-2000" />
+    <div className="min-h-screen flex items-center justify-center py-20 px-6 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size-[14px_24px]"></div>
 
-      <div className="grid md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-6xl mx-auto w-full relative z-10 grid lg:grid-cols-2 gap-16 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center md:text-left order-2 md:order-1"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left"
         >
-          <div className="inline-block px-4 py-2 rounded-full bg-blue-100/50 text-blue-700 font-medium text-sm mb-6 border border-blue-200">
-            👋 Welcome to my portfolio
-          </div>
-          <h1 className="text-6xl md:text-8xl font-black text-[#133B63] tracking-tighter mb-4 leading-tight">
-            Kabir <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">
-              Thayani.
-            </span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-medium text-slate-500 mb-8">
-            AI/ML Engineer & <br className="hidden md:block" /> Python Developer
-          </h2>
-          <p className="max-w-xl text-lg text-slate-600 mb-10 leading-relaxed mx-auto md:mx-0">
-            Specializing in intelligent applications and scalable systems. I
-            transform complex data problems into elegant, efficient, and
-            production-ready code.
-          </p>
+          <a
+            href="https://www.ijert.org/nanoray-v2-bridging-the-gap-between-transformers-and-edge-ai-via-cross-architecture-distillation"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 mb-8"
+          >
+            <span className="flex h-2 w-2 rounded-full bg-slate-900 mr-2"></span>
+            New Research Published: NanoRay-v2
+            <svg
+              className="ml-1 h-3.5 w-3.5 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-slate-900 mb-6 leading-[1.1]">
+            Kabir Thayani.
+          </h1>
+          <h2 className="text-xl md:text-2xl font-medium text-slate-500 mb-8 max-w-lg">
+            AI/ML Engineer &{" "}
+            <span className="text-slate-900">Python Developer</span>. Building
+            intelligent systems with precision.
+          </h2>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link
               to="/projects"
-              className="group relative px-8 py-4 bg-[#133B63] text-white font-bold rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="inline-flex h-11 items-center justify-center rounded-md bg-slate-900 px-8 text-sm font-medium text-white shadow-sm transition-transform active:scale-95 hover:bg-black focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950"
             >
-              <span className="absolute inset-0 w-full h-full bg-linear-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10 flex items-center gap-2">
-                View My Projects
-                <svg
-                  className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  ></path>
-                </svg>
-              </span>
+              View Projects
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-4 bg-white text-[#133B63] font-bold rounded-xl border-2 border-[#133B63]/10 hover:border-[#133B63] hover:bg-blue-50 transition-all duration-300 hover:-translate-y-1"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-slate-200 bg-white px-8 text-sm font-medium text-slate-900 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950"
             >
-              Get In Touch
+              Contact Me
             </Link>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center md:justify-end order-1 md:order-2"
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="order-1 lg:order-2 flex justify-center lg:justify-end"
         >
-          <div className="relative w-72 h-72 md:w-[500px] md:h-[500px]">
-            <div className="absolute inset-0 bg-linear-to-tr from-blue-600 to-purple-600 rounded-4xl rotate-6 opacity-20 blur-2xl animate-pulse" />
+          <div className="relative h-[300px] w-[300px] md:h-[400px] md:w-[400px]">
+            <div className="absolute top-0 right-0 h-full w-full bg-slate-100 rounded-full scale-90 translate-x-4 translate-y-4"></div>
             <img
               src={logo}
               alt="Kabir Thayani"
-              className="relative w-full h-full rounded-4xl object-cover shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 border-4 border-white"
+              className="relative h-full w-full rounded-full object-cover border border-slate-200 shadow-2xl bg-white p-2"
             />
           </div>
         </motion.div>

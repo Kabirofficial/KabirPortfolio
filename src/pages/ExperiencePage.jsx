@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import { experience } from "../data/experience.js";
 
@@ -16,26 +17,24 @@ const ExperiencePage = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 px-6 bg-[#FDFCF8] relative">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10" />
-
+    <div className="min-h-screen py-20 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-black text-[#133B63] mb-4">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">
             Work Experience
           </h1>
-          <div className="h-1.5 w-24 bg-linear-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
+          <div className="h-1 w-20 bg-slate-900 rounded-full" />
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="relative border-l-2 border-slate-200 ml-4 md:ml-8 space-y-12"
+          className="relative border-l border-slate-200 ml-3 md:ml-6 space-y-12"
         >
           {experience.map((item, index) => (
             <motion.div
@@ -43,29 +42,25 @@ const ExperiencePage = () => {
               variants={itemVariants}
               className="relative pl-8 md:pl-12 group"
             >
-              <div className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-white border-4 border-blue-600 group-hover:scale-125 transition-transform duration-300" />
+              <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-900 ring-4 ring-white" />
 
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all duration-300 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-[#133B63]">
-                      {item.role}
-                    </h3>
-                    <h4 className="text-lg font-medium text-slate-500">
-                      {item.company}
-                    </h4>
-                  </div>
-                  <span className="inline-block mt-2 md:mt-0 px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-semibold rounded-full">
-                    {item.period}
-                  </span>
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">
+                    {item.role}
+                  </h3>
+                  <h4 className="text-lg font-medium text-slate-500">
+                    {item.company}
+                  </h4>
                 </div>
-
-                <p className="text-slate-600 leading-relaxed text-lg">
-                  {item.description}
-                </p>
+                <span className="inline-flex mt-2 sm:mt-0 items-center rounded-md bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-700 whitespace-nowrap self-start">
+                  {item.period}
+                </span>
               </div>
+
+              <p className="text-slate-600 leading-relaxed max-w-2xl mt-4">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>

@@ -147,4 +147,22 @@ export const projectsData = [
     githubUrl: "#",
     liveUrl: null,
   },
+  {
+    id: "nanoray-v2",
+    title: "NanoRay-v2: Bridging the Gap Between Transformers and Edge AI",
+    description:
+      "A research paper on optimizing Transformer models for Edge AI deployment via Cross-Architecture Distillation.",
+    longDescription:
+      "Published in IJERT. 'NanoRay-v2' proposes a novel Cross-Architecture Distillation framework to bridge the gap between heavy Transformer models and resource-constrained Edge AI devices. By distilling knowledge from large Transformers into efficient, lightweight architectures, this research enables high-performance AI applications on edge hardware without sacrificing accuracy. Key contributions include a new distillation loss function and comprehensive benchmarks on standard datasets.",
+    tags: [
+      "Research Paper",
+      "AI",
+      "Edge Computing",
+      "Transformers",
+      "Deep Learning",
+    ],
+    githubUrl: "https://github.com/Kabirofficial/NanoRay_V2",
+    liveUrl:
+      "https://www.ijert.org/nanoray-v2-bridging-the-gap-between-transformers-and-edge-ai-via-cross-architecture-distillation",
+  },
 ];

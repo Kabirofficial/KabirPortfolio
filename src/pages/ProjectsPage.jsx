@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { projectsData } from "../data/projectsData.js";
 
 const ProjectsPage = () => {
@@ -12,23 +13,24 @@ const ProjectsPage = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 40 } },
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
   };
 
   return (
-    <div className="min-h-screen py-20 px-6 bg-[#FDFCF8]">
+    <div className="min-h-screen py-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <h1 className="text-5xl md:text-6xl font-black text-[#133B63] mb-4">
-            Featured Projects
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-4">
+            Projects
           </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-            A selection of my work in AI, Machine Learning, and Software
+          <p className="text-xl text-slate-500 max-w-2xl">
+            A collection of my work in AI, Machine Learning, and Software
             Development.
           </p>
         </motion.div>
@@ -45,44 +47,45 @@ const ProjectsPage = () => {
                 to={`/projects/${project.id}`}
                 className="block h-full group"
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl hover:border-blue-100 transition-all duration-300 h-full flex flex-col relative">
-                  <div className="absolute inset-0 bg-linear-to-t from-[#133B63]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                  <div className="p-8 flex flex-col h-full">
+                <div className="bg-white rounded-lg border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all duration-200 h-full flex flex-col overflow-hidden">
+                  <div className="p-6 flex flex-col h-full">
                     <div className="flex justify-between items-start mb-4">
-                      <h2 className="text-2xl font-bold text-[#133B63] group-hover:text-blue-700 transition-colors">
+                      <h2 className="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                         {project.title}
                       </h2>
-                      <span className="bg-slate-50 p-2 rounded-full group-hover:bg-blue-50 transition-colors">
-                        <svg
-                          className="w-5 h-5 text-slate-400 group-hover:text-blue-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          ></path>
-                        </svg>
-                      </span>
+                      <svg
+                        className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition-colors transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
                     </div>
 
-                    <p className="text-slate-600 mb-6 line-clamp-3 leading-relaxed grow">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 grow">
                       {project.description}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.tags.map((tag) => (
+                      {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="bg-blue-50/50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-100"
+                          className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-500/10"
                         >
                           {tag}
                         </span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="inline-flex items-center rounded-md bg-slate-50 px-2 py-1 text-xs font-medium text-slate-500 ring-1 ring-inset ring-slate-500/10">
+                          +{project.tags.length - 3}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

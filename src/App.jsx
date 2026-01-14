@@ -12,7 +12,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDFCF8] font-sans text-slate-900 selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900">
       <Navbar />
       <main className="grow">
         <Outlet />
