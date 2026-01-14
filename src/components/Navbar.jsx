@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,15 +67,15 @@ const Navbar = () => {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm"
-          : "bg-white/50 backdrop-blur-sm border-b border-transparent"
+          ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm dark:bg-slate-900/80 dark:border-white/10"
+          : "bg-white/0 backdrop-blur-none border-b border-transparent dark:bg-slate-900/0"
       }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           to="/"
           onClick={closeMenu}
-          className="relative z-50 flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900 group"
+          className="relative z-50 flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900 dark:text-white group"
         >
           <motion.span
             initial={{ opacity: 0, x: -10 }}
@@ -83,7 +84,7 @@ const Navbar = () => {
           >
             Kabir
           </motion.span>
-          <span className="text-slate-400 group-hover:text-slate-900 transition-colors">
+          <span className="text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
             .
           </span>
         </Link>
@@ -96,8 +97,8 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `relative px-3 py-2 text-[15px] font-medium transition-colors rounded-md ${
                   isActive
-                    ? "text-slate-900 bg-slate-100"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                    ? "text-slate-900 bg-slate-100 dark:bg-slate-800 dark:text-white"
+                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800"
                 }`
               }
             >
@@ -106,47 +107,51 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:block pl-4 border-l border-slate-200 ml-4">
+        <div className="hidden lg:flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-800">
+          <ThemeToggle />
           <motion.a
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             href="/KabirThayani.pdf"
             download="Kabir-Thayani-Resume.pdf"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-slate-900 text-white hover:bg-black h-10 px-4 py-2 shadow-sm hover:shadow-md"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-slate-900 text-white hover:bg-black dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 h-10 px-4 py-2 shadow-sm hover:shadow-md"
           >
             Resume
           </motion.a>
         </div>
 
         <div className="lg:hidden relative z-50">
-          <button
-            onClick={toggleMenu}
-            className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800 focus:outline-none"
+              aria-label="Toggle menu"
             >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -157,7 +162,7 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden"
+            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden dark:bg-slate-900 dark:border-slate-800"
           >
             <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
               {navItems.map((item) => (
@@ -168,8 +173,8 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                         isActive
-                          ? "bg-slate-100 text-slate-900"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                          ? "bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-white"
+                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
                       }`
                     }
                   >
@@ -179,12 +184,12 @@ const Navbar = () => {
               ))}
               <motion.div
                 variants={itemVariants}
-                className="pt-4 mt-2 border-t border-slate-100"
+                className="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800"
               >
                 <a
                   href="/KabirThayani.pdf"
                   download="Kabir-Thayani-Resume.pdf"
-                  className="flex items-center justify-center w-full rounded-lg text-base font-medium bg-slate-900 text-white hover:bg-black h-12 px-4 shadow-sm"
+                  className="flex items-center justify-center w-full rounded-lg text-base font-medium bg-slate-900 text-white hover:bg-black dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 h-12 px-4 shadow-sm"
                 >
                   Download Resume
                 </a>

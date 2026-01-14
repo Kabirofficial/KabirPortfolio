@@ -1,6 +1,36 @@
 @import 'tailwindcss';
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em; /* tracking-tight */
+  }
+
+  h1 {
+    line-height: 1.1;
+  }
+
+  /* Global smooth transition for theme switching */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -72,10 +102,9 @@
       "Noto Color Emoji";
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  /* Override default selection */
   ::selection {
-    background-color: #f1f5f9; /* slate-100 */
-    color: #0f172a; /* slate-900 */
+    background-color: #f1f5f9;
+    color: #0f172a;
   }
 }
 

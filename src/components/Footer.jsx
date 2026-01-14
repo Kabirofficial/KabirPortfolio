@@ -6,11 +6,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white border-t border-slate-200 py-12">
+    <footer className="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-12 pb-8 transition-colors duration-300">
       <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
-          <h3 className="text-lg font-bold text-slate-900">Kabir Thayani</h3>
-          <p className="text-slate-500 text-sm">
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+            Kabir Thayani
+          </h3>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
             AI/ML Engineer & Python Developer
           </p>
         </div>
@@ -20,7 +22,7 @@ const Footer = () => {
             href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-slate-900 transition-colors"
+            className="p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-slate-800 transition-all"
             aria-label="GitHub"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -31,7 +33,7 @@ const Footer = () => {
             href={socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-slate-900 transition-colors"
+            className="p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-slate-800 transition-all"
             aria-label="LinkedIn"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -40,7 +42,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <div className="text-sm text-slate-400">
+        <div className="text-sm text-slate-400 dark:text-slate-500">
           © {currentYear} Kabir Thayani. All rights reserved.
         </div>
       </div>

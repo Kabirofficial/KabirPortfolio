@@ -9,18 +9,18 @@ const ProjectDetailPage = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-slate-500">
+      <div className="min-h-screen flex items-center justify-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950">
         Project not found
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 py-20 px-6">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white py-20 px-6 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
         <Link
           to="/projects"
-          className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 mb-8 transition-colors group"
+          className="inline-flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white mb-8 transition-colors group"
         >
           <svg
             className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform"
@@ -44,16 +44,16 @@ const ProjectDetailPage = () => {
           transition={{ duration: 0.4 }}
           className="space-y-8"
         >
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-start border-b border-slate-200 pb-8">
+          <div className="flex flex-col md:flex-row gap-6 justify-between items-start border-b border-slate-200 dark:border-slate-800 pb-8">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                 {project.title}
               </h1>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-0.5 text-sm font-medium text-slate-700"
+                    className="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-slate-700 dark:text-slate-300"
                   >
                     {tag}
                   </span>
@@ -62,30 +62,40 @@ const ProjectDetailPage = () => {
             </div>
 
             <div className="flex gap-3 w-full md:w-auto">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md border border-slate-200 bg-white px-6 text-sm font-medium text-slate-900 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                GitHub
-              </a>
-              {project.liveUrl && (
                 <a
-                  href={project.liveUrl}
+                  href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md bg-slate-900 px-6 text-sm font-medium text-white hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
+                  className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 backdrop-blur-sm px-6 text-sm font-medium text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
                 >
-                  {project.tags.includes("Research Paper")
-                    ? "Read Paper"
-                    : "Live Demo"}
+                  GitHub
                 </a>
+              </motion.div>
+              {project.liveUrl && (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md bg-slate-900 dark:bg-slate-100 px-6 text-sm font-medium text-white dark:text-slate-900 hover:bg-black dark:hover:bg-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    {project.tags.includes("Research Paper")
+                      ? "Read Paper"
+                      : "Live Demo"}
+                  </a>
+                </motion.div>
               )}
             </div>
           </div>
 
-          <div className="prose prose-slate prose-lg max-w-none text-slate-600 leading-relaxed">
+          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none text-slate-600 dark:text-slate-400 leading-relaxed">
             {project.longDescription.split("\n").map((paragraph, index) => (
               <p key={index} className="mb-4 last:mb-0">
                 {paragraph}
