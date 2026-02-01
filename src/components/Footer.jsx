@@ -6,13 +6,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-12 pb-8 transition-colors duration-300">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-20 pb-12 transition-colors duration-300">
+      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-center md:text-left">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
             Kabir Thayani
           </h3>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+          <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">
             AI/ML Engineer & Python Developer
           </p>
         </div>

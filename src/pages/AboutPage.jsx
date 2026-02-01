@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import GlassCard from "../components/ui/GlassCard";
@@ -44,14 +44,14 @@ const AboutPage = () => {
               className="prose prose-lg dark:prose-invert text-slate-600 dark:text-slate-400 leading-relaxed"
             >
               <p className="text-xl text-slate-900 dark:text-white font-medium">
-                Hello! I'm Kabir.
+                Hello! I&apos;m Kabir.
               </p>
               <p>
                 A passionate <span className="text-slate-900 dark:text-white font-semibold">AI/ML Engineer</span> and Python Developer crafting intelligent, scalable solutions.
                 My journey is fueled by a desire to turn raw data into compelling stories and actionable insights.
               </p>
               <p>
-                From data preprocessing to model deployment, I thrive on the end-to-end ML lifecycle. Whether it's building deep learning
+                From data preprocessing to model deployment, I thrive on the end-to-end ML lifecycle. Whether it&apos;s building deep learning
                 models or optimizing classical algorithms, I love transforming complex theory into production-grade systems.
               </p>
             </motion.div>

@@ -1,26 +1,13 @@
-/* eslint-disable no-unused-vars */
+
 import { motion } from "framer-motion";
-import { useState } from "react";
+
 import GlassCard from "../components/ui/GlassCard";
 import Button from "../components/ui/Button";
 import SEO from "../components/SEO";
 import { Icons } from "../components/ui/Icons";
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle, submitting, success, error
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setStatus("submitting");
-
-    // Simulate network request
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
-  };
+  // Form logic removed as it was unused (replaced by direct links)
 
   return (
     <div className="min-h-screen py-24 px-6 relative bg-white dark:bg-slate-950 transition-colors duration-300 flex items-center justify-center">
@@ -44,11 +31,11 @@ const ContactPage = () => {
             Available for hire
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-slate-900 dark:text-white mb-6">
-            Let's work together.
+            Let&apos;s work together.
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-12 max-w-2xl mx-auto">
             I’m always open to discussing collaborations, AI/ML research, or
-            creative project ideas. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            creative project ideas. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

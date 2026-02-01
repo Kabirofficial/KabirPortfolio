@@ -136,7 +136,7 @@ const HomePage = () => {
           transition={{ duration: 0.8, ease: "backOut" }}
           className="order-1 lg:order-2 flex justify-center lg:justify-end relative"
         >
-          <div className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px]">
+          <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px]">
             {/* Abstract Shapes */}
             <motion.div
               animate={{ rotate: 360 }}

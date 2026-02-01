@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { motion } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import { projectsData } from "../data/projectsData.js";
@@ -9,8 +9,9 @@ const ProjectDetailPage = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950">
-        Project not found
+      <div className="min-h-screen flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950">
+        <h2 className="text-2xl font-bold mb-4">Project not found</h2>
+        <Link to="/projects" className="text-blue-500 hover:underline">Return to Projects</Link>
       </div>
     );
   }
