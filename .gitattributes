@@ -1,0 +1,10 @@
+# Enforce LF for all text files (standard for web projects)
+* text=auto eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary

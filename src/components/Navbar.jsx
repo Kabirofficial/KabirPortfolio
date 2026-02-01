@@ -1,104 +1,75 @@
-/* eslint-disable no-unused-vars */
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { NAV_ITEMS } from "../utils/constants";
+import Button from "./ui/Button";
+import { Icons } from "./ui/Icons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  const { scrollY } = useScroll();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return scrollY.on("change", (latest) => {
+      setScrolled(latest > 20);
+    });
+  }, [scrollY]);
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e) => {
-      if (e.key === "Escape") setIsOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen]);
-
-  const toggleMenu = () => setIsOpen((s) => !s);
-  const closeMenu = () => setIsOpen(false);
-
-  const navItems = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/experience", label: "Experience" },
-    { to: "/education", label: "Education" },
-    { to: "/skills", label: "Skills" },
-    { to: "/certifications", label: "Certifications" },
-    { to: "/projects", label: "Projects" },
-    { to: "/contact", label: "Contact" },
-  ];
-
+  // Elite mobile menu variants
   const menuVariants = {
     closed: {
       opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.3,
-        ease: [0.04, 0.62, 0.23, 0.98],
-      },
+      scale: 0.95,
+      y: -20,
+      transition: { duration: 0.2, ease: "easeInOut" }
     },
     open: {
       opacity: 1,
-      height: "auto",
-      transition: {
-        duration: 0.3,
-        ease: [0.04, 0.62, 0.23, 0.98],
-        when: "beforeChildren",
-        staggerChildren: 0.05,
-      },
-    },
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.3, ease: "easeOut", staggerChildren: 0.1 }
+    }
   };
 
   const itemVariants = {
     closed: { opacity: 0, x: -10 },
-    open: { opacity: 1, x: 0 },
+    open: { opacity: 1, x: 0 }
   };
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm dark:bg-slate-900/80 dark:border-white/10"
-          : "bg-white/0 backdrop-blur-none border-b border-transparent dark:bg-slate-900/0"
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled
+        ? "h-16 bg-white/70 dark:bg-slate-950/70 backdrop-blur-md border-b border-slate-200/50 dark:border-white/5 shadow-sm"
+        : "h-20 bg-transparent border-b border-transparent"
+        }`}
     >
-      <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-6 h-full flex items-center justify-between">
+        {/* Logo */}
         <Link
           to="/"
-          onClick={closeMenu}
-          className="relative z-50 flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900 dark:text-white group"
+          className="relative z-50 flex items-center gap-2 font-bold text-xl tracking-tighter text-slate-900 dark:text-white group"
         >
-          <motion.span
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Kabir
-          </motion.span>
-          <span className="text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
-            .
-          </span>
+          <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 group-hover:rotate-3 transition-transform">
+            K
+          </div>
+          <span className="font-display">Kabir</span>
+          <span className="text-blue-500 animate-pulse">.</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-1 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-1.5 rounded-full border border-slate-200/50 dark:border-white/5 shadow-sm">
+          {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `relative px-3 py-2 text-[15px] font-medium transition-colors rounded-md ${
-                  isActive
-                    ? "text-slate-900 bg-slate-100 dark:bg-slate-800 dark:text-white"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800"
+                `relative px-4 py-1.5 text-sm font-medium transition-all rounded-full ${isActive
+                  ? "text-slate-900 dark:text-white bg-white dark:bg-slate-800 shadow-sm"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
                 }`
               }
             >
@@ -107,98 +78,94 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4 ml-4 pl-4 border-l border-slate-200 dark:border-slate-800">
+        {/* Desktop Actions */}
+        <div className="hidden lg:flex items-center gap-3">
           <ThemeToggle />
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <Button
             href="/KabirThayani.pdf"
             download="Kabir-Thayani-Resume.pdf"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-slate-900 text-white hover:bg-black dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 h-10 px-4 py-2 shadow-sm hover:shadow-md"
+            variant="primary"
+            size="sm"
+            className="rounded-full"
           >
             Resume
-          </motion.a>
+          </Button>
         </div>
 
-        <div className="lg:hidden relative z-50">
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <button
-              onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800 focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+        {/* Mobile Toggle */}
+        <div className="lg:hidden flex items-center gap-3 relative z-50">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+            className="p-2 rounded-full text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            aria-label="Search"
+          >
+            <Icons.Search className="w-5 h-5" />
+          </button>
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 h-6 flex flex-col justify-center items-center gap-1.5">
+              <motion.span
+                animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                className="w-5 h-0.5 bg-current rounded-full block transition-all"
+              />
+              <motion.span
+                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                className="w-5 h-0.5 bg-current rounded-full block transition-all"
+              />
+              <motion.span
+                animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                className="w-5 h-0.5 bg-current rounded-full block transition-all"
+              />
+            </div>
+          </button>
         </div>
       </div>
 
-      <AnimatePresence>
+      {/* Mobile Menu Overlay */}
+      < AnimatePresence >
         {isOpen && (
           <motion.div
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden dark:bg-slate-900 dark:border-slate-800"
+            className="absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-2xl p-4 lg:hidden rounded-b-2xl mx-2"
           >
-            <div className="container mx-auto px-6 py-6 flex flex-col gap-2">
-              {navItems.map((item) => (
+            <nav className="flex flex-col gap-2">
+              {NAV_ITEMS.map((item) => (
                 <motion.div key={item.to} variants={itemVariants}>
-                  <NavLink
+                  <Link
                     to={item.to}
-                    onClick={closeMenu}
-                    className={({ isActive }) =>
-                      `block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                        isActive
-                          ? "bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-white"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white"
-                      }`
-                    }
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center p-3 rounded-xl text-lg font-medium transition-colors ${pathname === item.to
+                      ? "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"
+                      : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                      }`}
                   >
                     {item.label}
-                  </NavLink>
+                  </Link>
                 </motion.div>
               ))}
-              <motion.div
-                variants={itemVariants}
-                className="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800"
-              >
-                <a
+              <motion.div variants={itemVariants} className="pt-4 mt-2 border-t border-slate-200/50 dark:border-white/10">
+                <Button
                   href="/KabirThayani.pdf"
                   download="Kabir-Thayani-Resume.pdf"
-                  className="flex items-center justify-center w-full rounded-lg text-base font-medium bg-slate-900 text-white hover:bg-black dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 h-12 px-4 shadow-sm"
+                  variant="primary"
+                  size="md"
+                  className="w-full rounded-xl"
                 >
                   Download Resume
-                </a>
+                </Button>
               </motion.div>
-            </div>
+            </nav>
           </motion.div>
         )}
-      </AnimatePresence>
-    </header>
+      </AnimatePresence >
+    </header >
   );
 };
 

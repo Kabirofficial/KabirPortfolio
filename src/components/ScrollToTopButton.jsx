@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +27,7 @@ const ScrollToTopButton = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
@@ -52,7 +52,7 @@ const ScrollToTopButton = () => {
               ></path>
             </svg>
           </button>
-        </motion.div>
+        </Motion.div>
       )}
     </AnimatePresence>
   );

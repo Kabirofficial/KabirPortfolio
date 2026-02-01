@@ -1,10 +1,12 @@
-/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import CommandPalette from "./components/CommandPalette";
+import ScrollProgress from "./components/ScrollProgress";
+import { pageVariants } from "./utils/animations";
 
 function App() {
   const { pathname } = useLocation();
@@ -13,34 +15,13 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      y: 20,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      transition: {
-        duration: 0.3,
-        ease: "easeIn",
-      },
-    },
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
+      <ScrollProgress />
       <Navbar />
-      <main className="grow">
-        <AnimatePresence mode="wait">
+      <CommandPalette />
+      <main className="grow relative">
+        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <motion.div
             key={pathname}
             initial="initial"

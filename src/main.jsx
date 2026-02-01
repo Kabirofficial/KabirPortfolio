@@ -4,61 +4,109 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 
-import AboutPage from "./pages/AboutPage.jsx";
-import CertificationsPage from "./pages/CertificationsPage.jsx";
-import ContactPage from "./pages/ContactPage.jsx";
-import EducationPage from "./pages/EducationPage.jsx";
-import ExperiencePage from "./pages/ExperiencePage.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import ProjectDetailPage from "./pages/ProjectDetailPage.jsx";
-import ProjectsPage from "./pages/ProjectsPage.jsx";
-import SkillsPage from "./pages/SkillsPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
+import Loading from "./components/Loading.jsx";
+
+const AboutPage = React.lazy(() => import("./pages/AboutPage.jsx"));
+const CertificationsPage = React.lazy(() => import("./pages/CertificationsPage.jsx"));
+const ContactPage = React.lazy(() => import("./pages/ContactPage.jsx"));
+const EducationPage = React.lazy(() => import("./pages/EducationPage.jsx"));
+const ErrorPage = React.lazy(() => import("./pages/ErrorPage.jsx"));
+const ExperiencePage = React.lazy(() => import("./pages/ExperiencePage.jsx"));
+const HomePage = React.lazy(() => import("./pages/HomePage.jsx"));
+const ProjectDetailPage = React.lazy(() => import("./pages/ProjectDetailPage.jsx"));
+const ProjectsPage = React.lazy(() => import("./pages/ProjectsPage.jsx"));
+const SkillsPage = React.lazy(() => import("./pages/SkillsPage.jsx"));
+const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: (
+      <React.Suspense fallback={<Loading />}>
+        <ErrorPage />
+      </React.Suspense>
+    ),
     children: [
       {
         path: "*",
-        element: <NotFoundPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <NotFoundPage />
+          </React.Suspense>
+        ),
       },
       {
         index: true,
-        element: <HomePage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <HomePage />
+          </React.Suspense>
+        ),
       },
       {
         path: "about",
-        element: <AboutPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <AboutPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "experience",
-        element: <ExperiencePage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <ExperiencePage />
+          </React.Suspense>
+        ),
       },
       {
         path: "education",
-        element: <EducationPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <EducationPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "skills",
-        element: <SkillsPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <SkillsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "certifications",
-        element: <CertificationsPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <CertificationsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "projects",
-        element: <ProjectsPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <ProjectsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "projects/:projectId",
-        element: <ProjectDetailPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <ProjectDetailPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "contact",
-        element: <ContactPage />,
+        element: (
+          <React.Suspense fallback={<Loading />}>
+            <ContactPage />
+          </React.Suspense>
+        ),
       },
     ],
   },
@@ -67,9 +115,7 @@ const router = createBrowserRouter([
 import { ThemeProvider } from "./context/ThemeContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider>
+    <RouterProvider router={router} />
+  </ThemeProvider>
 );
