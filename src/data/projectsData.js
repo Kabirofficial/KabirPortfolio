@@ -6,7 +6,7 @@ export const projectsData = [
     longDescription:
       "For a long time, I had a simple but frustrating problem I kept forgetting anime and movie release dates. New episodes would air, new seasons would begin, and I would realize weeks later that I had completely missed them.\nI tried reminders, notes, and different tracking apps, but none felt simple, fast, and focused specifically on anime release schedules. So I decided to build my own solution.\nI built AniSystem, a backendless anime and media tracking web application that helps track upcoming releases, manage watchlists, view weekly schedules, and stay updated with seasonal anime all with offline-first persistence and a performance-focused frontend architecture using React, Vite, Zustand, and AniList GraphQL.\nThis project started from a personal problem but became a strong learning experience in building production-ready frontend systems, optimizing state persistence without a backend, and designing a scalable tracking platform.",
     tags: ["React", "Vite", "Zustand", "AniList GraphQL", "Frontend Architecture"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/Kabirofficial/AniSystem",
     liveUrl: "https://theanisystem.vercel.app/",
   },
   {
