@@ -81,7 +81,7 @@ const HomePage = () => {
           {/* Badge */}
           <motion.div variants={itemVariants}>
             <a
-              href="https://theanisystem.vercel.app/"
+              href="https://arxiv.org/abs/2603.06698"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 text-blue-600 dark:text-blue-300 text-sm font-medium mb-8 hover:scale-105 transition-transform cursor-pointer"
@@ -90,7 +90,7 @@ const HomePage = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              New Project: AniSystem
+              New Publication: Breaking the Geometric Bottleneck
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
             </a>
           </motion.div>

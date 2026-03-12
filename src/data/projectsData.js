@@ -175,4 +175,21 @@ export const projectsData = [
     liveUrl:
       "https://www.ijert.org/nanoray-v2-bridging-the-gap-between-transformers-and-edge-ai-via-cross-architecture-distillation",
   },
+  {
+    id: "breaking-geometric-bottleneck",
+    title: "Breaking the Geometric Bottleneck: Contrastive Expansion in Asymmetric Cross-Modal Distillation",
+    description:
+      "An investigation into Dimensional Collapse when distilling global Vision Transformers (CLIP, DINOv2) into capacity-constrained CNNs.",
+    longDescription:
+      "Knowledge distillation between asymmetric architectures often induces severe geometric constraints on the learned representation space. In this work, we investigate the Dimensional Collapse phenomenon when distilling global Vision Transformers (CLIP and DINOv2) into capacity-constrained CNNs. By employing strictly centered SVD and Effective Rank, we first demonstrate a capacity-agnostic phase transition on CIFAR-10 where standard cosine distillation collapses representations to an intrinsic Effective Rank of ~16. To reverse this, we integrate an auxiliary contrastive objective (InfoNCE), expanding the student's manifold by 2.4x (to ~38 effective dimensions). We further demonstrate that while DINOv2's uniform geometry partially prevents collapse, contrastive expansion remains a universal requirement to reach the CNN's topological capacity limit (~82 dimensions). Finally, we reveal a critical capacity-density trade-off: overparameterization within fixed manifolds induces brittleness, while capacity-constrained models act as optimal low-pass semantic filters, successfully recovering inherent noise immunity.",
+    tags: [
+      "Research Paper",
+      "Knowledge Distillation",
+      "Vision Transformers",
+      "Contrastive Learning",
+      "Deep Learning",
+    ],
+    githubUrl: "#",
+    liveUrl: "https://arxiv.org/abs/2603.06698",
+  },
 ];
