@@ -1,93 +1,54 @@
-/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import { certifications } from "../data/certifications.js";
+import { certifications } from "../data/certifications";
+import SEO from "../components/SEO";
 
 const CertificationsPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 50 } },
-  };
-
   return (
-    <div className="min-h-screen py-20 px-6 bg-white dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-32 pb-20">
+      <SEO title="Certifications" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
+          className="border-b border-black pb-12 mb-20"
         >
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-            Certifications
+          <h1 className="text-[12vw] md:text-[8vw] leading-none tracking-tighter mb-4">
+            The Accolades.
           </h1>
-          <div className="h-1 w-20 bg-slate-900 dark:bg-white rounded-full" />
+          <p className="text-xl md:text-2xl opacity-60 lowercase font-medium tracking-tight">
+            Validation of technical mastery from industry-standard authorities.
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="space-y-6"
-        >
+        <div className="flex flex-col border-t border-black">
           {certifications.map((cert, index) => (
-            <motion.a
+            <a
               key={index}
               href={cert.url}
               target="_blank"
               rel="noopener noreferrer"
-              variants={itemVariants}
-              whileHover={{ y: -4 }}
-              className="block group relative bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6 hover:border-slate-900 dark:hover:border-slate-100 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+              className="group border-b border-black py-12 md:py-16 hover:bg-[#891A20] hover:text-white transition-all duration-500 relative flex flex-col md:flex-row md:items-center justify-between"
             >
-              <div className="absolute top-6 right-6 text-slate-300 dark:text-slate-600 group-hover:text-slate-900 dark:group-hover:text-slate-100 transition-colors">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pr-8">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1">
-                    {cert.title}
-                  </h3>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium">
-                    {cert.issuer}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center justify-between">
-                {cert.date && (
-                  <span className="inline-flex items-center rounded-md bg-slate-50 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-300 ring-1 ring-inset ring-slate-500/10">
-                    Issued: {cert.date}
-                  </span>
-                )}
+              <div className="flex flex-col gap-4 max-w-4xl relative z-10">
+                <span className="text-xs md:text-sm tracking-[0.3em] font-black opacity-60 group-hover:text-white">
+                  {cert.date} / {cert.issuer}
+                </span>
+                <h2 className="text-3xl md:text-5xl tracking-tighter">
+                  {cert.title}
+                </h2>
                 {cert.credentialId && (
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">
+                  <span className="text-[10px] tracking-widest opacity-40 lowercase group-hover:text-white group-hover:opacity-80">
                     ID: {cert.credentialId}
                   </span>
                 )}
               </div>
-            </motion.a>
+              <div className="text-4xl md:text-6xl tracking-tighter mt-8 md:mt-0 transition-transform duration-500 group-hover:translate-x-8">
+                OPEN_CERT_ 
+              </div>
+            </a>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

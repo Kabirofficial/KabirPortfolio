@@ -1,112 +1,100 @@
-
+import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
-import { projectsData } from "../data/projectsData.js";
+import { projectsData } from "../data/projectsData";
+import SEO from "../components/SEO";
 
 const ProjectDetailPage = () => {
-  const { projectId } = useParams();
-  const project = projectsData.find((p) => p.id === projectId);
+    const { projectId } = useParams();
+    const project = projectsData.find((p) => p.id === projectId);
 
-  if (!project) {
+    if (!project) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black p-6">
+                <h1 className="text-4xl mb-8 tracking-tighter">Sector Not Found.</h1>
+                <Link to="/projects" className="border border-black px-8 py-4 hover:bg-black hover:text-white transition-all uppercase text-xs tracking-widest">
+                    Return to Works
+                </Link>
+            </div>
+        );
+    }
+
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-950">
-        <h2 className="text-2xl font-bold mb-4">Project not found</h2>
-        <Link to="/projects" className="text-blue-500 hover:underline">Return to Projects</Link>
-      </div>
-    );
-  }
+        <div className="min-h-screen bg-white text-black font-black uppercase pt-32 pb-20 overflow-x-hidden">
+            <SEO title={project.title} />
 
-  return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white py-20 px-6 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto">
-        <Link
-          to="/projects"
-          className="inline-flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white mb-8 transition-colors group"
-        >
-          <svg
-            className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
-          Back to Projects
-        </Link>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="space-y-8"
-        >
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-start border-b border-slate-200 dark:border-slate-800 pb-8">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                {project.title}
-              </h1>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center rounded-md bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-slate-700 dark:text-slate-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-3 w-full md:w-auto">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900/50 backdrop-blur-sm px-6 text-sm font-medium text-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
-                >
-                  GitHub
-                </a>
-              </motion.div>
-              {project.liveUrl && (
+            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+                
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="border-b border-black pb-12 mb-20"
                 >
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 md:flex-none inline-flex h-10 items-center justify-center rounded-md bg-slate-900 dark:bg-slate-100 px-6 text-sm font-medium text-white dark:text-slate-900 hover:bg-black dark:hover:bg-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
-                  >
-                    {project.tags.includes("Research Paper")
-                      ? "Read Paper"
-                      : "Live Demo"}
-                  </a>
+                    <div className="flex items-center gap-4 mb-8">
+                        <Link to="/projects" className="text-xs tracking-widest hover:text-[#891A20] transition-colors">← Back to Works</Link>
+                        <div className="w-8 h-px bg-black opacity-20" />
+                        <span className="text-xs tracking-widest opacity-60">{project.tags[0]}</span>
+                    </div>
+                    <h1 className="text-huge mb-4">
+                        {project.title}
+                    </h1>
                 </motion.div>
-              )}
-            </div>
-          </div>
 
-          <div className="prose prose-slate dark:prose-invert prose-lg max-w-none text-slate-600 dark:text-slate-400 leading-relaxed">
-            {project.longDescription.split("\n").map((paragraph, index) => (
-              <p key={index} className="mb-4 last:mb-0">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+                    
+                    <div className="lg:col-span-8 space-y-24">
+                        <div className="prose prose-2xl uppercase font-black text-black leading-[1.1] tracking-tight max-w-none">
+                            <p className="text-3xl md:text-5xl opacity-80 mb-12">
+                                {project.description}
+                            </p>
+                            <div className="text-lg md:text-xl font-medium lowercase opacity-60 leading-normal normal-case">
+                                {project.longDescription}
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-black pt-12">
+                            {project.githubUrl && project.githubUrl !== "#" && (
+                                <a
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="border border-black p-8 hover:bg-black hover:text-white transition-all group"
+                                >
+                                    <span className="text-xs tracking-widest mb-12 block opacity-60">Source Code</span>
+                                    <div className="text-3xl tracking-tighter">GITHUB_ REPO →</div>
+                                </a>
+                            )}
+                            {project.liveUrl && (
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="border border-black p-8 hover:bg-[#891A20] hover:text-white hover:border-[#891A20] transition-all group"
+                                >
+                                    <span className="text-xs tracking-widest mb-12 block opacity-60">Live Experience</span>
+                                    <div className="text-3xl tracking-tighter">LAUNCH_ APP →</div>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    
+                    <div className="lg:col-span-4 flex flex-col gap-12">
+                        <div className="border border-black p-8">
+                            <h3 className="text-sm tracking-widest mb-12 opacity-60">Stack / Intelligence</h3>
+                            <ul className="space-y-6">
+                                {project.tags.map((tag, i) => (
+                                    <li key={i} className="flex items-center justify-between text-xs tracking-widest border-b border-black/10 pb-4">
+                                        <span>{tag}</span>
+                                        <span className="text-[#891A20]">0{i + 1}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default ProjectDetailPage;

@@ -1,16 +1,16 @@
 export const education = [
   {
     degree: 'Master of Science in Artificial Intelligence / Machine Learning',
-    institution: 'Target: Leading Canadian University (e.g., Western University, UBC, or Waterloo)',
-    period: 'Planned: 2026 - 2028',
+    school: 'Target: Leading Canadian University (Western / UBC / Waterloo)',
+    period: 'Projected: 2026 - 2028',
     description:
-      'Planned pursuit of advanced research in AI and Machine Learning with a focus on deep learning, large language models (LLMs), and AI systems design. Goal: specialize in applied AI research and contribute to top-tier AI innovations at organizations like OpenAI, Google, or NVIDIA.',
+      'Projected specialization in Distributed Intelligence and Large Language Systems. Researching the frontiers of automated reasoning, multi-modal alignment, and high-performance neural architectures. Aiming to bridge the gap between theoretical ML breakthroughs and production-grade AI infrastructure.',
   },
   {
     degree: 'Bachelor of Technology in Computer Science Engineering',
-    institution: 'Noble University, Jubnagadh, Gujarat, India',
+    school: 'Noble University, Jubnagadh, Gujarat, India',
     period: '2022 - 2026',
     description:
-      'Currently in 8th semester with CGPA 9+. Developed strong foundations in algorithms, data structures, and deep learning. Completed multiple AI/ML projects including handwriting recognition, movie recommendation system, and RAG-based chatbot. Actively preparing for research and graduate studies abroad.',
+      'Achieved a 9.0+ CGPA with a rigorous concentration on Deep Learning and Algorithmic Efficiency. Engineered end-to-end RAG ecosystems, neural recommendation engines, and high-accuracy Computer Vision (CV) pipelines. Focused on the convergence of low-level system optimization and high-level neural modeling.',
   },
 ];

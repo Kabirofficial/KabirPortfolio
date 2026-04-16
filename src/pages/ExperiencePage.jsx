@@ -1,69 +1,66 @@
-/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import { experience } from "../data/experience.js";
+import { experience } from "../data/experience";
+import SEO from "../components/SEO";
+import Timeline from "../components/Timeline";
 
 const ExperiencePage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 50 } },
-  };
-
   return (
-    <div className="min-h-screen py-20 px-6 bg-white dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-24 md:pt-32 pb-20">
+      <SEO title="Experience" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        
+        
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
+          className="md:hidden border-b border-black pb-8 mb-12"
         >
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-            Work Experience
+          <h1 className="text-6xl mb-4 text-wrap">
+            The <br/> Chronicle.
           </h1>
-          <div className="h-1 w-20 bg-slate-900 dark:bg-white rounded-full" />
+          <p className="text-lg opacity-60 lowercase font-medium tracking-tight">
+            A linear progression of systems, intelligence, and large-scale engineering.
+          </p>
         </motion.div>
 
+        
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="relative border-l border-slate-200 dark:border-slate-800 ml-3 md:ml-6 space-y-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="hidden md:block border-b border-black pb-12 mb-20"
         >
-          {experience.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="relative pl-8 md:pl-12 group"
-            >
-              <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-900 dark:bg-white ring-4 ring-white dark:ring-slate-950" />
-
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                    {item.role}
-                  </h3>
-                  <h4 className="text-lg font-medium text-slate-500 dark:text-slate-400">
-                    {item.company}
-                  </h4>
-                </div>
-                <span className="inline-flex mt-2 sm:mt-0 items-center rounded-md bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap self-start">
-                  {item.period}
-                </span>
-              </div>
-
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mt-4">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
+          <h1 className="text-huge mb-4">
+            The Chronicle.
+          </h1>
+          <p className="text-xl md:text-2xl opacity-60 lowercase font-medium tracking-tight">
+            A linear progression of systems, intelligence, and large-scale engineering.
+          </p>
         </motion.div>
+
+        
+        <div className="border-t border-black pt-12 md:pt-20">
+             <Timeline items={experience} />
+        </div>
+
+        
+        
+        <div className="md:hidden mt-24 border border-black p-8 flex flex-col items-center gap-8 text-center bg-white relative z-10">
+          <h2 className="text-3xl tracking-tighter">Looking for intelligence?</h2>
+          <a href="mailto:thayanikabir.official@gmail.com" className="text-xl px-6 py-4 bg-black text-white hover:bg-[#891A20] transition-colors leading-none pt-5">
+            HIRE_KABIR_
+          </a>
+        </div>
+
+        
+        <div className="hidden md:flex mt-40 border border-black p-20 flex-col items-center gap-12 text-center bg-white relative z-10">
+          <h2 className="text-4xl md:text-6xl tracking-tighter">Looking for intelligence?</h2>
+          <a href="mailto:thayanikabir.official@gmail.com" className="text-2xl md:text-4xl px-12 py-6 bg-black text-white hover:bg-[#891A20] transition-colors leading-none pt-8">
+            HIRE_KABIR_
+          </a>
+        </div>
+
       </div>
     </div>
   );

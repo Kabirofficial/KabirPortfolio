@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="bg-[#133B63] text-white p-3.5 rounded-2xl shadow-xl hover:bg-blue-800 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="bg-primary text-white p-3.5 rounded-2xl shadow-xl hover:bg-primary/90 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <svg
               className="w-6 h-6"

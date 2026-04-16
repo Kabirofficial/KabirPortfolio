@@ -1,32 +1,48 @@
 import { useRouteError, Link } from "react-router-dom";
-import { motion as Motion } from "framer-motion";
+import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 const ErrorPage = () => {
     const error = useRouteError();
     console.error(error);
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950 px-6 transition-colors duration-300">
-            <div className="text-center max-w-md">
-                <Motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl font-bold text-slate-900 dark:text-white mb-4"
+        <div className="min-h-screen flex flex-col bg-white text-black font-black uppercase overflow-hidden">
+            <SEO title="Error" />
+            
+            <div className="flex-1 flex flex-col justify-center items-center relative p-6 md:p-12 z-10 w-full overflow-hidden">
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-center flex flex-col items-center"
                 >
-                    Oops!
-                </Motion.h1>
-                <p className="text-xl text-slate-600 dark:text-slate-400 mb-8">
-                    Sorry, an unexpected error has occurred.
-                </p>
-                <p className="text-slate-500 dark:text-slate-500 mb-8 italic">
-                    {error.statusText || error.message}
-                </p>
-                <Link
-                    to="/"
-                    className="inline-flex h-12 items-center justify-center rounded-lg bg-slate-900 dark:bg-slate-100 px-8 text-base font-bold text-white dark:text-slate-900 shadow-xl transition-all hover:bg-black dark:hover:bg-white hover:scale-105"
-                >
-                    Go Back Home
-                </Link>
+                    <div className="text-[#891A20] text-xl md:text-3xl mb-4 tracking-widest">
+                        SYSTEM FAILURE
+                    </div>
+                    <h1 className="text-8xl md:text-[15vw] leading-none tracking-tighter mb-8 xl:mb-12">
+                        ERROR.
+                    </h1>
+                    
+                    <div className="border border-black p-6 md:p-8 w-full max-w-2xl bg-white relative z-20 mb-12">
+                        <span className="opacity-60 text-xs md:text-sm tracking-[0.3em] mb-4 block">Diagnostic Log</span>
+                        <p className="text-lg md:text-2xl text-[#891A20] normal-case lowercase leading-tight">
+                            &gt; {error?.statusText || error?.message || "critical_malfunction_detected"}
+                        </p>
+                    </div>
+
+                    <Link
+                        to="/"
+                        className="group relative border border-black px-12 py-6 overflow-hidden bg-white text-xl md:text-3xl tracking-tighter hover:text-white transition-colors duration-500"
+                    >
+                        <span className="relative z-10 text-black group-hover:text-white transition-colors duration-500">REBOOT SYSTEM →</span>
+                        <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0" />
+                    </Link>
+                </motion.div>
+
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] opacity-5 pointer-events-none select-none tracking-tighter whitespace-nowrap">
+                    FAIL
+                </div>
             </div>
         </div>
     );

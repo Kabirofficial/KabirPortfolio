@@ -1,65 +1,66 @@
 
 import { motion } from "framer-motion";
-
-import GlassCard from "../components/ui/GlassCard";
-import Button from "../components/ui/Button";
 import SEO from "../components/SEO";
-import { Icons } from "../components/ui/Icons";
 
 const ContactPage = () => {
-  // Form logic removed as it was unused (replaced by direct links)
-
   return (
-    <div className="min-h-screen py-24 px-6 relative bg-white dark:bg-slate-950 transition-colors duration-300 flex items-center justify-center">
-      <SEO title="Contact" description="Get in touch with Kabir Thayani for collaborations and opportunities." />
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-32 pb-20 overflow-hidden">
+      <SEO title="Contact" />
 
-      {/* Background Ambience */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-4xl w-full relative z-10 flex flex-col items-center text-center">
-
-        {/* Info Section */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col min-h-[70vh] justify-between">
+        
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="max-w-4xl"
         >
-          <div className="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/20 px-3 py-1 text-sm font-medium text-blue-600 dark:text-blue-400 mb-6 border border-blue-100 dark:border-blue-800">
-            <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
-            Available for hire
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-1 bg-[#891A20]" />
+            <span className="text-xs tracking-widest text-[#891A20]">Initiate Connection</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-slate-900 dark:text-white mb-6">
-            Let&apos;s work together.
+          <h1 className="text-massive mb-12">
+            Let&apos;s Build <br />
+            Something.
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-12 max-w-2xl mx-auto">
-            I’m always open to discussing collaborations, AI/ML research, or
-            creative project ideas. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="mailto:thayanikabir.official@gmail.com" className="group flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-slate-100 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all text-left min-w-[280px]">
-              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Icons.Mail className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">Email</div>
-                <div className="text-slate-900 dark:text-white font-bold">thayanikabir.official@gmail.com</div>
-              </div>
-            </a>
-
-            <a href="https://www.linkedin.com/in/thayanikabir/" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-slate-100 dark:border-white/5 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all text-left min-w-[280px]">
-              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Icons.Linkedin className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-sm text-slate-500 dark:text-slate-400 font-medium">LinkedIn</div>
-                <div className="text-slate-900 dark:text-white font-bold">Connect with me</div>
-              </div>
-            </a>
-          </div>
         </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-black mt-20">
+          <a
+            href="mailto:thayanikabir.official@gmail.com"
+            className="group border-r border-b border-black p-12 hover:bg-[#891A20] hover:text-white transition-all duration-500"
+          >
+            <span className="text-xs tracking-widest mb-12 block opacity-60">01 / Email</span>
+            <div className="text-2xl md:text-3xl tracking-tighter break-all">
+                THAYANIKABIR.OFFICIAL@GMAIL.COM
+            </div>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/thayanikabir/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group border-r border-b border-black p-12 hover:bg-black hover:text-white transition-all duration-500"
+          >
+            <span className="text-xs tracking-widest mb-12 block opacity-60">02 / LinkedIn</span>
+            <div className="text-2xl md:text-3xl tracking-tighter">
+                CONNECT_
+            </div>
+          </a>
+
+          <div className="group border-r border-b border-black p-12 md:col-span-2 lg:col-span-1">
+            <span className="text-xs tracking-widest mb-12 block opacity-60">03 / Status</span>
+            <div className="flex items-center gap-4">
+                <div className="w-4 h-4 bg-[#891A20] animate-pulse" />
+                <div className="text-2xl md:text-3xl tracking-tighter">
+                    REMOTE_READY
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-32 text-[20vw] leading-[0.6] opacity-5 select-none pointer-events-none -ml-4">
+            INBOX
+        </div>
       </div>
     </div>
   );

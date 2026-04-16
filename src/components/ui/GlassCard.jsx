@@ -17,10 +17,10 @@ const GlassCard = ({ children, className = "", hoverEffect = true, ...props }) =
       `}
             {...props}
         >
-            {/* Subtle gradient overlay for depth */}
+            
             <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent dark:from-white/5 pointer-events-none" />
 
-            {/* Content */}
+            
             <div className="relative z-10">
                 {children}
             </div>

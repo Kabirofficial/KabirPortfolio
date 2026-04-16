@@ -13,7 +13,20 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+    height: auto;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -33,78 +46,54 @@
 
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
+    --foreground: 0 0% 0%;
+    --primary: 357 68% 32%; /* Deep Red #891A20 */
+    --border: 0 0% 0%;
+    --radius: 0rem;
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 357 68% 45%;
+    --border: 0 0% 100%;
   }
 }
 
 @layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: "Inter", sans-serif;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: none !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #ffffff;
+    color: #000000;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Reset all potential scroll-blocking wrappers */
+  #root, .relative.min-h-screen {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    font-family: "Space Grotesk", sans-serif;
-    letter-spacing: -0.03em;
-  }
-  
-  p {
-    line-height: 1.7;
+  h1, h2, h3, h4 {
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
   }
 
   ::selection {
-    background-color: #3b82f6; /* blue-500 */
+    background-color: #891A20; 
     color: #ffffff;
   }
   
   .dark ::selection {
-    background-color: #60a5fa; /* blue-400 */
-    color: #0f172a; /* slate-900 */
+    background-color: #b91c1c; 
+    color: #ffffff;
   }
 
   /* Custom Scrollbar */
@@ -133,11 +122,31 @@
   .dark ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
   }
+
+  /* Mobile Cursor Reset */
+  @media (max-width: 1024px) {
+    html, body, a, button {
+      cursor: auto !important;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Fluid Brutalist Typography */
+  .text-massive {
+    font-size: clamp(3rem, 15vw, 12rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+
+  .text-huge {
+    font-size: clamp(2.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
   }
 }
 

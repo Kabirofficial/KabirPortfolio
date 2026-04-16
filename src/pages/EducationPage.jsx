@@ -1,69 +1,57 @@
-/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import { education } from "../data/education.js";
+import { education } from "../data/education";
+import SEO from "../components/SEO";
 
 const EducationPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 50 } },
-  };
-
   return (
-    <div className="min-h-screen py-20 px-6 bg-white dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-32 pb-20">
+      <SEO title="Education" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
+          className="border-b border-black pb-12 mb-20"
         >
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-            Education
+          <h1 className="text-huge mb-4">
+            The Foundation.
           </h1>
-          <div className="h-1 w-20 bg-slate-900 dark:bg-white rounded-full" />
+          <p className="text-xl md:text-2xl opacity-60 lowercase font-medium tracking-tight">
+             Scholastic milestones in computer engineering and quantitative logic.
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="space-y-12"
-        >
+        <div className="flex flex-col border-t border-black">
           {education.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
-              className="relative pl-8 border-l border-slate-200 dark:border-slate-800 group"
+              className="group border-b border-black py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 hover:bg-black hover:text-white transition-all duration-500 overflow-hidden"
             >
-              <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-900 dark:bg-white ring-4 ring-white dark:ring-slate-950" />
-
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                    {item.school}
-                  </h3>
-                  <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
-                    {item.degree}
-                  </p>
-                </div>
-                <span className="inline-flex mt-2 sm:mt-0 items-center rounded-md bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap self-start">
-                  {item.period}
-                </span>
+              <div className="lg:col-span-1 text-xs md:text-sm tracking-[0.3em] text-[#891A20] font-black">
+                0{index + 1}
               </div>
-
-              <div className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
-                {item.description}
+              <div className="lg:col-span-7 flex flex-col gap-6">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl tracking-tighter leading-none">
+                  {item.school}
+                </h2>
+                <h3 className="text-xl md:text-3xl opacity-60 lowercase font-medium">
+                   {item.degree}
+                </h3>
+                <p className="mt-8 text-sm md:text-lg opacity-80 normal-case font-medium leading-relaxed max-w-3xl">
+                    {item.description}
+                </p>
               </div>
-            </motion.div>
+              <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-between text-right gap-8">
+                 <span className="text-xs md:text-sm tracking-[0.2em] font-black">
+                   {item.period}
+                 </span>
+                 <div className="text-6xl md:text-8xl lg:text-9xl tracking-tighter opacity-10 group-hover:opacity-20 transition-opacity">
+                    EDU.
+                 </div>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

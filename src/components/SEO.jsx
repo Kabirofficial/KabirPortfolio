@@ -29,10 +29,10 @@ const SEO = ({ title, description, image, url }) => {
         };
 
         Object.entries(metaTags).forEach(([name, content]) => {
-            // Handle standard meta tags
+            
             let element = document.querySelector(`meta[name="${name}"]`);
             if (!element) {
-                // Handle og: and twitter: tags which use property instead of name
+                
                 element = document.querySelector(`meta[property="${name}"]`);
             }
 
@@ -41,7 +41,7 @@ const SEO = ({ title, description, image, url }) => {
             }
         });
 
-        // Update canonical link
+        
         let canonical = document.querySelector("link[rel='canonical']");
         if (canonical) {
             canonical.setAttribute("href", finalUrl);

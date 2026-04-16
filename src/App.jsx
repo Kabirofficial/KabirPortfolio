@@ -1,42 +1,36 @@
-import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import Footer from "./components/Footer";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
-import ScrollToTopButton from "./components/ScrollToTopButton";
-import CommandPalette from "./components/CommandPalette";
-import ScrollProgress from "./components/ScrollProgress";
-import { pageVariants } from "./utils/animations";
+import CustomCursor from "./components/CustomCursor";
+import SmoothScroll from "./components/SmoothScroll";
+import Preloader from "./components/Preloader";
 
 function App() {
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  const [loading, setLoading] = useState(true);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
-      <ScrollProgress />
-      <Navbar />
-      <CommandPalette />
-      <main className="grow relative">
-        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-          <motion.div
-            key={pathname}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={pageVariants}
-            className="w-full h-full"
-          >
-            <Outlet />
-          </motion.div>
+    <SmoothScroll>
+      <div className="relative min-h-screen flex flex-col bg-white text-black selection:bg-[#891A20] selection:text-white">
+        <CustomCursor />
+        
+        <AnimatePresence mode="wait">
+           {loading && <Preloader onComplete={() => setLoading(false)} />}
         </AnimatePresence>
-      </main>
-      <Footer />
-      <ScrollToTopButton />
-    </div>
+
+        {!loading && (
+           <>
+             <Navbar />
+             <main className="flex-grow flex flex-col relative w-full h-full">
+               <AnimatePresence mode="wait">
+                 <Outlet key={pathname} />
+               </AnimatePresence>
+             </main>
+           </>
+        )}
+      </div>
+    </SmoothScroll>
   );
 }
 

@@ -144,7 +144,7 @@ const CommandPalette = () => {
                         transition={{ duration: 0.2 }}
                         className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden"
                     >
-                        {/* Input */}
+                        
                         <div className="flex items-center px-4 border-b border-slate-100 dark:border-slate-800">
                             <Icons.Search className="w-5 h-5 text-slate-400" />
                             <input
@@ -158,7 +158,7 @@ const CommandPalette = () => {
                             <div className="text-xs font-medium text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">ESC</div>
                         </div>
 
-                        {/* Results */}
+                        
                         <div className="max-h-[60vh] overflow-y-auto p-2">
                             {filteredActions.length === 0 ? (
                                 <div className="px-4 py-8 text-center text-slate-500 text-sm">No results found.</div>

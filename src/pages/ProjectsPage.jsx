@@ -3,18 +3,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { projectsData } from "../data/projectsData";
 import SEO from "../components/SEO";
-import GlassCard from "../components/ui/GlassCard";
-import Button from "../components/ui/Button";
-
-
 
 const ProjectsPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = [
     { id: "All", label: "All Work" },
-    { id: "AI & ML", label: "AI & Machine Learning" },
-    { id: "Web Dev", label: "Web Development" },
+    { id: "AI & ML", label: "AI & ML" },
+    { id: "Web Dev", label: "Systems" },
     { id: "Research", label: "Research" },
   ];
 
@@ -35,50 +31,27 @@ const ProjectsPage = () => {
   });
 
   return (
-    <div className="min-h-screen relative bg-white dark:bg-slate-950 transition-colors duration-300 pb-20">
-      <SEO
-        title="Projects"
-        description="A curated collection of my work in AI, Machine Learning, and Web Engineering."
-      />
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-24 md:pt-32 pb-20">
+      <SEO title="Projects" />
 
-      {/* Decorative Background - Standard CSS for safety */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-violet-500/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 pt-32 relative z-10">
-
-        {/* Headings - Using simple motion div with direct props to bypass variant propagation issues */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold tracking-tighter text-slate-900 dark:text-white mb-6"
-          >
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">Work</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed"
-          >
-            Bridging the gap between theoretical AI research and practical, scalable engineering solutions.
-          </motion.p>
-
-          {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mt-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        
+        
+        <div className="md:hidden flex flex-col border-b border-black pb-8 mb-12 whitespace-normal">
+          <h1 className="text-6xl mb-8">
+            The Works.
+          </h1>
+          <div className="flex overflow-x-auto pb-4 gap-3 no-scrollbar -mx-6 px-6">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
                 className={`
-                  relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200
+                  px-5 py-2 border text-[10px] tracking-widest transition-all duration-300 whitespace-nowrap
                   ${activeCategory === category.id
-                    ? "text-white dark:text-slate-900 bg-slate-900 dark:bg-white ring-2 ring-slate-900 dark:ring-white ring-offset-2 dark:ring-offset-slate-950"
-                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-black border-black hover:bg-[#891A20] hover:text-white hover:border-[#891A20]"
                   }
                 `}
               >
@@ -88,67 +61,89 @@ const ProjectsPage = () => {
           </div>
         </div>
 
-        {/* Grid - No "layout" prop on container to prevent measurement bugs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        
+        <div className="hidden md:flex flex-col border-b border-black pb-12 mb-20 whitespace-normal">
+          <h1 className="text-massive mb-12">
+            The Works.
+          </h1>
+          <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`
+                  px-6 py-2 border text-xs tracking-widest transition-all duration-300 whitespace-nowrap
+                  ${activeCategory === category.id
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-black border-black hover:bg-[#891A20] hover:text-white hover:border-[#891A20]"
+                  }
+                `}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        
+        <div className="flex flex-col border-t border-black">
           {filteredProjects.map((project, index) => (
-            <motion.div
+            <Link
               key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="h-full"
+              to={`/projects/${project.id}`}
+              className="group border-b border-black py-8 md:py-16 hover:bg-[#891A20] hover:text-white transition-all duration-500 overflow-hidden relative"
             >
-              <Link to={`/projects/${project.id}`} className="block h-full group focus:outline-none">
-                <GlassCard className="h-full flex flex-col p-0 overflow-hidden border-slate-200 dark:border-white/10 hover:border-blue-500/30 dark:hover:border-blue-400/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1">
-                  <div className="p-8 flex flex-col h-full relative">
-                    <div className="flex justify-between items-start mb-6">
-                      <div>
-                        <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2 block">
-                          {project.tags[0]}
-                        </span>
-                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {project.title}
-                        </h2>
-                      </div>
-                      <div className="w-10 h-10 rounded-full bg-slate-50 dark:bg-white/5 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6 line-clamp-3 grow">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 pt-6 border-t border-slate-100 dark:border-white/5 mt-auto">
-                      {project.tags.slice(1, 4).map((tag) => (
-                        <span key={tag} className="text-xs font-medium text-slate-500 dark:text-slate-400 px-2 py-1 bg-slate-100 dark:bg-white/5 rounded-md">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+              
+              <div className="md:hidden flex flex-col gap-4 pointer-events-none relative z-10 px-4">
+                  <span className="text-[10px] tracking-[0.3em] opacity-60">
+                      {project.tags[0]} — 0{index + 1}
+                  </span>
+                  <h2 className="text-4xl tracking-tighter leading-none mb-4">
+                      {project.title}
+                  </h2>
+                  <div className="text-xl tracking-tighter text-[#891A20] group-hover:text-white">
+                      VIEW PROJECT →
                   </div>
-                </GlassCard>
-              </Link>
-            </motion.div>
+              </div>
+
+              
+              <div className="hidden md:flex flex-row items-center justify-between pointer-events-none relative z-10 px-6">
+                <div className="flex flex-col gap-4">
+                    <span className="text-sm tracking-[0.3em] opacity-60">
+                        {project.tags[0]} — 0{index + 1}
+                    </span>
+                    <h2 className="text-6xl lg:text-7xl tracking-tighter leading-none">
+                        {project.title}
+                    </h2>
+                </div>
+                <div className="text-5xl lg:text-6xl tracking-tighter transition-transform duration-500 group-hover:translate-x-12">
+                    VIEW →
+                </div>
+              </div>
+              
+              
+              <div className="hidden md:block absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] opacity-[0.03] select-none group-hover:opacity-10 transition-opacity">
+                {project.id}
+              </div>
+            </Link>
           ))}
         </div>
 
-        {/* Empty State */}
+        
         {filteredProjects.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-slate-500">No projects found for this category.</p>
-            <button onClick={() => setActiveCategory("All")} className="text-blue-500 mt-2 hover:underline">Clear Filters</button>
+          <div className="text-center py-32 md:py-40 border-b border-black">
+            <p className="text-xl md:text-2xl opacity-60">Nothing found in this sector.</p>
+            <button onClick={() => setActiveCategory("All")} className="text-[#891A20] mt-4 hover:underline">Reset System</button>
           </div>
         )}
 
-        {/* CTA */}
-        <div className="mt-32 text-center pb-12">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Interested in working together?</h2>
-          <Button to="/contact" size="lg" className="rounded-full">Get in touch</Button>
+        
+        <div className="mt-24 md:mt-40 border border-black p-8 md:p-20 flex flex-col items-center gap-8 md:gap-12 text-center">
+          <h2 className="text-3xl md:text-6xl tracking-tighter">Ready to initiate?</h2>
+          <Link to="/contact" className="text-xl md:text-4xl px-8 py-5 md:px-12 md:py-6 bg-black text-white hover:bg-[#891A20] transition-colors leading-none pt-6 md:pt-8">
+            START_COLLAB_
+          </Link>
         </div>
-
       </div>
     </div>
   );

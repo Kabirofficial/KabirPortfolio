@@ -1,63 +1,58 @@
-/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
-import { skills } from "../data/skills.js";
+import { skills } from "../data/skills";
+import SEO from "../components/SEO";
 
 const SkillsPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
-
   return (
-    <div className="min-h-screen py-20 px-6 bg-white dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-white text-black font-black uppercase pt-32 pb-20">
+      <SEO title="Skills" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16"
+          className="border-b border-black pb-12 mb-20"
         >
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-            Technical Skills
+          <h1 className="text-[12vw] md:text-[8vw] leading-none tracking-tighter mb-4">
+            Intelligence.
           </h1>
-          <div className="h-1 w-20 bg-slate-900 dark:bg-white rounded-full" />
+          <p className="text-xl md:text-2xl opacity-60 lowercase font-medium tracking-tight">
+             A matrix of technical proficiencies across the stack.
+          </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {skills.map((category) => (
-            <motion.div
-              key={category.title}
-              variants={itemVariants}
-              className="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6 hover:shadow-md transition-shadow duration-200"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-black">
+          {skills.map((category, index) => (
+            <div
+              key={index}
+              className="group border-r border-b border-black p-10 hover:bg-[#891A20] hover:text-white transition-all duration-500"
             >
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800">
+              <span className="text-xs md:text-sm tracking-[0.3em] opacity-40 mb-12 block group-hover:text-white">
+                 ID: 0{index + 1} 
+              </span>
+              <h3 className="text-2xl md:text-3xl tracking-tighter mb-12">
                 {category.title}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.items.map((skill) => (
+              <div className="flex flex-wrap gap-x-6 gap-y-4">
+                {category.items.map((skill, i) => (
                   <span
-                    key={skill}
-                    className="inline-flex items-center rounded-md bg-slate-50 dark:bg-slate-800 px-2 py-1 text-sm font-medium text-slate-700 dark:text-slate-300 text-center"
+                    key={i}
+                    className="text-xs md:text-sm tracking-widest opacity-80 font-medium group-hover:opacity-100"
                   >
-                    {skill}
+                    {skill}_
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+
+         <div className="mt-40 border border-black p-12 md:p-20 flex flex-col items-center gap-12 text-center">
+          <h2 className="text-4xl md:text-6xl tracking-tighter">System is ready.</h2>
+          <a href="/projects" className="text-2xl md:text-4xl px-12 py-6 bg-black text-white hover:bg-black transition-colors leading-none pt-8">
+            VIEW_WORKS_
+          </a>
+        </div>
       </div>
     </div>
   );
