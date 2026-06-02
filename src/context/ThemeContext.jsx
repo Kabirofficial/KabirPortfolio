@@ -1,4 +1,5 @@
 
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext();
@@ -10,11 +11,8 @@ export const ThemeProvider = ({ children }) => {
       if (savedTheme) {
         return savedTheme;
       }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
     }
-    return "light";
+    return "dark";
   });
 
   useEffect(() => {

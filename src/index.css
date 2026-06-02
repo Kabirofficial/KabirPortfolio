@@ -1,15 +1,12 @@
 @import 'tailwindcss';
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.animate-blink {
-  animation: blink 1s step-end infinite;
-}
+/* ── Design Tokens ────────────────────────────────────────── */
 @variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Outfit', 'Playfair Display', Georgia, serif;
+}
 
 @layer base {
   html {
@@ -28,126 +25,114 @@
   .lenis.lenis-smooth [data-lenis-prevent] {
     overscroll-behavior: contain;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.025em; /* tracking-tight */
-  }
 
-  h1 {
-    line-height: 1.1;
-  }
-
-  /* Global smooth transition for theme switching */
-  *, *::before, *::after {
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-  }
-
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --primary: 357 68% 32%; /* Deep Red #891A20 */
-    --border: 0 0% 0%;
-    --radius: 0rem;
-  }
- 
-  .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --primary: 357 68% 45%;
-    --border: 0 0% 100%;
-  }
-}
-
-@layer base {
   body {
-    cursor: none !important;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #fafaf9; /* Editorial Off-white */
+    color: #1c1c1f; /* Editorial Dark Charcoal */
     width: 100%;
     min-height: 100vh;
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Reset all potential scroll-blocking wrappers */
+  .dark body {
+    background-color: #0e0e11; /* Deep charcoal dark */
+    color: #f4f4f5; /* Light grey text */
+  }
+
+  html.dark { background-color: #0e0e11; color-scheme: dark; }
+  html.light { background-color: #fafaf9; color-scheme: light; }
+
   #root, .relative.min-h-screen {
     height: auto !important;
     min-height: 100vh;
     overflow: visible !important;
   }
-  
-  h1, h2, h3, h4 {
-    text-transform: uppercase;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  h1 { line-height: 1.1; }
+
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-duration: 200ms;
   }
 
   ::selection {
-    background-color: #891A20; 
-    color: #ffffff;
+    background-color: #e4e4e7;
+    color: #000000;
   }
-  
+
   .dark ::selection {
-    background-color: #b91c1c; 
+    background-color: #27272a;
     color: #ffffff;
   }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.4); /* slate-400/40 */
-    border-radius: 99px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(148, 163, 184, 0.6);
-  }
-  
-  .dark ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  /* Mobile Cursor Reset */
-  @media (max-width: 1024px) {
-    html, body, a, button {
-      cursor: auto !important;
-    }
-  }
+  /* Thin Minimalist Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 99px; }
+  .dark ::-webkit-scrollbar-thumb { background: #3f3f46; }
+  ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+  .dark ::-webkit-scrollbar-thumb:hover { background: #52525b; }
 }
+
+/* ── Keyframes & Animations ────────────────────────────────── */
+@keyframes blink { 50% { opacity: 0; } }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .animate-blink { animation: blink 1s step-end infinite; }
+  .text-balance { text-wrap: balance; }
+
+  /* Editorial Layout Rules */
+  .border-editorial {
+    border-color: #e4e4e7;
+  }
+  .dark .border-editorial {
+    border-color: #27272a;
   }
 
-  /* Fluid Brutalist Typography */
   .text-massive {
-    font-size: clamp(3rem, 15vw, 12rem);
-    line-height: 0.85;
-    letter-spacing: -0.05em;
-  }
-
-  .text-huge {
-    font-size: clamp(2.5rem, 10vw, 8rem);
-    line-height: 0.9;
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.95;
     letter-spacing: -0.04em;
   }
+  .text-huge {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.035em;
+  }
+  .text-display {
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Thin-bordered editorial tag pills */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    background: #f4f4f5;
+    color: #71717a;
+    border: 1px solid #e4e4e7;
+  }
+
+  .dark .pill {
+    background: #18181b;
+    color: #a1a1aa;
+    border: 1px solid #27272a;
+  }
 }
-
-

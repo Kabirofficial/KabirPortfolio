@@ -5,18 +5,11 @@ const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
-    if (window.scrollY > 500) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    setIsVisible(window.scrollY > 500);
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -36,20 +29,10 @@ const ScrollToTopButton = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="bg-primary text-white p-3.5 rounded-2xl shadow-xl hover:bg-primary/90 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className="w-12 h-12 flex items-center justify-center rounded-2xl glass glow-border text-slate-400 hover:text-amber-500 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 focus:outline-none"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.5"
-                d="M5 15l7-7 7 7"
-              ></path>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 15l7-7 7 7" />
             </svg>
           </button>
         </Motion.div>

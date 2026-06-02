@@ -12,7 +12,7 @@ const Clock = () => {
     }, []);
 
     return (
-        <div className="font-mono text-sm tracking-widest uppercase tabular-nums">
+        <div className="font-mono text-sm tracking-widest tabular-nums text-slate-500 dark:text-slate-500">
             {time.toLocaleTimeString('en-GB', { hour12: false })}
         </div>
     );

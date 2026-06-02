@@ -1,205 +1,194 @@
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import useIsMobile from "../utils/useIsMobile";
+import { ROLES } from "../utils/constants";
+import { projectsData } from "../data/projectsData";
 
-const projects = [
-  {
-    title: "RAG & LLM Automation",
-    subtitle: "AI / ML Architecture",
-    image: "/redesign/rag.png",
-  },
-  {
-    title: "FastAPI Backend Architecture",
-    subtitle: "High Performance API",
-    image: "/redesign/fastapi.png",
-  },
-  {
-    title: "n8n Lead Routing System",
-    subtitle: "Workflow Automation",
-    image: "/redesign/n8n.png",
-  },
-];
-
-const HomePage = () => {
-  const isMobile = useIsMobile();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+const RoleTypewriter = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
-    
-    if (isMobile) return;
-    const handleMouseMove = (e) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY, isMobile]);
+    const interval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="flex flex-col w-full bg-white text-black font-black uppercase overflow-hidden">
-      <SEO title="Home" />
+    <motion.span
+      key={roleIndex}
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -5 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="text-zinc-900 dark:text-zinc-100 font-bold font-serif"
+    >
+      {ROLES[roleIndex]}
+    </motion.span>
+  );
+};
 
-      
-      
-      <section className="md:hidden flex flex-col justify-start p-6 border-b border-black pt-32 pb-20">
-         <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-         >
-            <h1 className="text-5xl leading-[1.1] mb-6 mt-12">
-              Engineering <br />
-              Intelligence.
-            </h1>
-            <p className="text-[#891A20] text-xl leading-tight">
-              Architecting the leverage of the future.
-            </p>
-         </motion.div>
-      </section>
+const HomePage = () => {
+  
+  // Showcase a selection of premium projects on the home page
+  const selectedProjects = projectsData.filter(p => 
+    p.id === "anisystem" || p.id === "rag-bot" || p.id === "nanoray-v2"
+  );
 
-      
-      <section className="hidden md:flex h-screen flex-col justify-end p-12 lg:p-20 border-b border-black pt-32">
+  return (
+    <div className="min-h-screen bg-transparent pt-24 md:pt-36 pb-20 relative">
+      <SEO title="AI/ML Engineer" />
+
+      {/* Hero Section */}
+      <section className="px-6 md:px-12 lg:px-20 max-w-5xl mb-24 md:mb-36">
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-[90vw]"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col items-start"
         >
-          <h1 className="text-7xl lg:text-massive mb-12">
-            Engineering <br />
-            Intelligence. <br />
-            <span className="text-[#891A20]">Architecting the leverage of the future.</span>
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-800 text-[10px] uppercase tracking-wider font-semibold text-zinc-500 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Open to opportunities // Gujarat, India & Remote
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-huge font-bold tracking-tight mb-8 text-zinc-900 dark:text-zinc-100">
+            Engineering intelligence <br className="hidden md:block" />
+            and high-performance systems.
           </h1>
+
+          {/* Subheading */}
+          <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed max-w-3xl mb-10">
+            Hi, I&apos;m Kabir Thayani — <RoleTypewriter />
+            <br />
+            Architecting the leverage of tomorrow through mathematical reasoning, optimized compilers, and distributed architectures.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex gap-4">
+            <Link
+              to="/projects"
+              className="px-5 py-3 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-zinc-100 dark:text-zinc-900 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 rounded"
+            >
+              Explore Works
+            </Link>
+            <Link
+              to="/contact"
+              className="px-5 py-3 border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-xs font-semibold uppercase tracking-wider transition-all duration-200 rounded"
+            >
+              Get in Touch
+            </Link>
+          </div>
         </motion.div>
       </section>
 
-      
-      <section className="flex flex-col border-b border-black relative z-10">
-        <div className="px-6 md:px-12 lg:px-20 py-6 md:py-8 border-b border-black flex justify-between items-center bg-white sticky top-16 md:top-20 z-20">
-            <span className="text-xs md:text-sm tracking-widest leading-none">Selected Works</span>
-            <span className="text-xs md:text-sm tracking-widest leading-none">2024 — 2026</span>
+      {/* Selected Works Showcase */}
+      <section className="px-6 md:px-12 lg:px-20 mb-24 md:mb-36">
+        <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8 pb-10 flex justify-between items-center">
+          <span className="text-xs uppercase tracking-[0.25em] font-semibold text-zinc-400 dark:text-zinc-500">Selected Works</span>
+          <Link to="/projects" className="text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors uppercase tracking-wider">
+            View All ({projectsData.length}) →
+          </Link>
         </div>
 
-        {projects.map((project, index) => (
-          <Link
-            to="/projects"
-            key={index}
-            className="group relative border-b border-black overflow-hidden bg-white block"
-            onMouseEnter={() => !isMobile && setHoveredIndex(index)}
-            onMouseLeave={() => !isMobile && setHoveredIndex(null)}
-          >
-            
-            <div className="md:hidden px-6 py-10 flex flex-col relative z-10">
-              <span className="text-xs mb-3 tracking-widest opacity-60">0{index + 1} / {project.subtitle}</span>
-              <h2 className="text-4xl tracking-tighter mb-6">{project.title}</h2>
-              <div className="w-full h-[30vh] bg-gray-100 border border-black overflow-hidden relative">
-                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
+        {/* Asymmetric Alternating Layout */}
+        <div className="flex flex-col gap-12 md:gap-20">
+          {selectedProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 items-start border-b border-zinc-100 dark:border-zinc-900/50 pb-12 md:pb-20`}
+            >
+              {/* Index Column */}
+              <div className="lg:col-span-1 text-xs font-mono font-bold text-zinc-300 dark:text-zinc-700">
+                0{index + 1}
               </div>
-              <div className="text-xl mt-6 tracking-tighter text-[#891A20]">
-                 Explore Project →
-              </div>
-            </div>
 
-            
-            <div className="hidden md:flex px-12 lg:px-20 py-20 flex-row items-center justify-between transition-colors duration-300 group-hover:text-[#891A20] relative z-10">
-              <div className="flex flex-col">
-                <span className="text-sm mb-4 tracking-widest opacity-60">0{index + 1} / {project.subtitle}</span>
-                <h2 className="text-6xl lg:text-8xl tracking-tighter">{project.title}</h2>
+              {/* Title & Tags */}
+              <div className="lg:col-span-4">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 text-zinc-900 dark:text-zinc-100">
+                  {project.title}
+                </h2>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {project.tags.slice(0, 3).map((tag, tIdx) => (
+                    <span key={tIdx} className="pill" style={{ padding: '0.15rem 0.5rem', fontSize: '10px' }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="text-4xl lg:text-5xl mt-0 tracking-tighter group-hover:translate-x-6 transition-transform duration-500">
-                 →
+
+              {/* Description */}
+              <div className="lg:col-span-5 text-sm md:text-base text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed">
+                {project.description}
               </div>
-            </div>
-            
-            
-            {!isMobile && (
-               <div className="absolute inset-0 bg-[#891A20]/0 group-hover:bg-[#891A20]/5 transition-colors duration-500" />
-            )}
-          </Link>
-        ))}
+
+              {/* CTA Link */}
+              <div className="lg:col-span-2 lg:text-right">
+                <Link
+                  to={`/projects/${project.id}`}
+                  className="text-xs font-bold uppercase tracking-wider text-zinc-900 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400 transition-colors inline-flex items-center gap-1.5"
+                >
+                  View Case <span>→</span>
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
-      
-      {!isMobile && (
-         <motion.div
-            className="fixed pointer-events-none z-[50] w-[45vh] h-[60vh] overflow-hidden border border-black bg-white shadow-2xl"
-            style={{
-               left: springX,
-               top: springY,
-               x: "-50%",
-               y: "-50%",
-               scale: hoveredIndex !== null ? 1 : 0,
-               rotate: hoveredIndex !== null ? 2 : 0,
-            }}
-            transition={{ scale: { type: "spring", stiffness: 200, damping: 25 } }}
-         >
-            {projects.map((project, index) => (
-               <motion.img
-                  key={index}
-                  src={project.image}
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-               />
-            ))}
-         </motion.div>
-      )}
+      {/* Quick Bio & Contact Cards */}
+      <section className="px-6 md:px-12 lg:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-zinc-200 dark:border-zinc-800 pt-16">
+          
+          {/* Availability */}
+          <div className="border border-zinc-200 dark:border-zinc-800 p-8 rounded-lg">
+            <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-zinc-400 dark:text-zinc-500 block mb-6">
+              Core Stack
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["Python", "PyTorch", "Rust", "Transformers", "LLMOps", "FastAPI"].map((s, idx) => (
+                <span key={idx} className="pill">{s}</span>
+              ))}
+            </div>
+          </div>
 
-      
-      <footer className="p-6 md:p-12 lg:p-20 mb-16 md:mb-32">
-        
-        <div className="md:hidden flex flex-col gap-12">
-            <div className="flex flex-col gap-4">
-                <span className="text-[10px] tracking-[0.3em] font-medium opacity-60">Availability</span>
-                <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-[#891A20] animate-pulse" />
-                    <span className="text-xl tracking-tighter">Remote Roles Open</span>
-                </div>
+          {/* Contact */}
+          <div className="border border-zinc-200 dark:border-zinc-800 p-8 rounded-lg flex flex-col justify-between min-h-[180px]">
+            <div>
+              <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-zinc-400 dark:text-zinc-500 block mb-4">
+                Let&apos;s talk
+              </span>
+              <a href="mailto:thayanikabir.official@gmail.com" className="text-lg md:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 hover:underline break-all block mb-4">
+                thayanikabir.official@gmail.com
+              </a>
             </div>
-            <div className="flex flex-col gap-4">
-                <span className="text-[10px] tracking-[0.3em] font-medium opacity-60">Contact</span>
-                <a href="mailto:thayanikabir.official@gmail.com" className="text-md tracking-tighter text-[#891A20] break-all">THAYANIKABIR.OFFICIAL@GMAIL.COM</a>
-                <div className="flex gap-6 mt-2">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest border-b border-black transition-all">LINKEDIN</a>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest border-b border-black transition-all">GITHUB</a>
-                </div>
+            <div className="flex gap-4">
+              <a href="https://linkedin.com/in/thayanikabir/" target="_blank" rel="noopener noreferrer"
+                 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                LinkedIn
+              </a>
+              <a href="https://github.com/Kabirofficial" target="_blank" rel="noopener noreferrer"
+                 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                GitHub
+              </a>
             </div>
+          </div>
         </div>
 
-        
-        <div className="hidden md:grid grid-cols-2 gap-20">
-            <div className="flex flex-col gap-8">
-                <span className="text-xs tracking-[0.3em] font-medium opacity-60">Availability</span>
-                <div className="group flex items-center gap-4">
-                    <div className="w-4 h-4 rounded-full bg-[#891A20] animate-pulse" />
-                    <span className="text-3xl lg:text-4xl tracking-tighter hover:text-[#891A20] transition-colors cursor-pointer">Remote AI/ML Roles Open</span>
-                </div>
-            </div>
-            <div className="flex flex-col gap-8 text-right overflow-hidden">
-                <span className="text-xs tracking-[0.3em] font-medium opacity-60">Contact</span>
-                <a href="mailto:thayanikabir.official@gmail.com" className="text-3xl lg:text-4xl tracking-tighter hover:text-[#891A20] transition-colors break-all">THAYANIKABIR.OFFICIAL@GMAIL.COM</a>
-                <div className="flex gap-12 justify-end mt-4">
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm tracking-widest border-b border-black hover:border-[#891A20] hover:text-[#891A20] transition-all">LINKEDIN</a>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm tracking-widest border-b border-black hover:border-[#891A20] hover:text-[#891A20] transition-all">GITHUB</a>
-                </div>
-            </div>
+        {/* Watermark Logo */}
+        <div className="mt-20 md:mt-28 w-full overflow-hidden">
+          <div className="text-[10vw] md:text-[12vw] leading-none tracking-tighter select-none pointer-events-none text-center md:text-left font-bold opacity-[0.02] dark:opacity-[0.03] uppercase font-mono">
+            Kabir Thayani
+          </div>
         </div>
-        
-        <div className="mt-24 md:mt-40 w-full overflow-hidden flex justify-center md:justify-start">
-            <div className="text-[13vw] md:text-[18vw] leading-[0.8] tracking-tighter select-none pointer-events-none opacity-5 whitespace-nowrap">
-                KABIR THAYANI
-            </div>
-        </div>
-      </footer>
+      </section>
     </div>
   );
 };

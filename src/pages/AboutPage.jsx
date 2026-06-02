@@ -3,132 +3,121 @@ import { Link } from "react-router-dom";
 import Timeline from "../components/Timeline";
 import { experience } from "../data/experience";
 import SEO from "../components/SEO";
+import { useTheme } from "../context/ThemeContext";
 
 const AboutPage = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="min-h-screen bg-white text-black font-black uppercase pt-24 md:pt-32 pb-20">
+    <div className="min-h-screen bg-transparent pt-24 md:pt-32 pb-20 relative">
       <SEO title="About Me" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        
+        {/* Title Block */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden border-b border-black pb-8 mb-12"
+          className="border-b border-zinc-200 dark:border-zinc-800 pb-12 mb-16 md:mb-20"
         >
-          <h1 className="text-6xl mb-2 text-wrap">
-            The <br /> Philosophy.
+          <h1 className="text-huge font-bold leading-none mb-4">
+            The <span className="text-zinc-400 dark:text-zinc-500 font-serif">Philosophy.</span>
           </h1>
+          <p className="text-sm md:text-base text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider">
+            Biography // Objective Chronicle
+          </p>
         </motion.div>
 
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="hidden md:block border-b border-black pb-12 mb-20"
-        >
-          <h1 className="text-huge mb-4">
-            The Philosophy.
-          </h1>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20">
-
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
           
-          <div className="lg:col-span-8 flex flex-col gap-12 md:gap-24">
-
+          {/* Main Info */}
+          <div className="lg:col-span-8 flex flex-col gap-12 md:gap-16">
             
-            <div className="md:hidden flex flex-col gap-8 leading-[1.15] tracking-tight">
-              <p className="text-3xl text-[#891A20]">
+            {/* Lead Text */}
+            <div className="flex flex-col gap-6 leading-relaxed max-w-none">
+              <p className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 Engineering intelligence.
               </p>
-              <p className="opacity-80 text-xl">
-                I am Kabir Thayani. An AI/ML Engineer focused on high-performance distributed systems and automated reasoning.
+              <p className={`text-xl md:text-2xl font-semibold leading-snug ${theme === 'dark' ? 'text-slate-200' : 'text-slate-800'}`}>
+                I am Kabir Thayani. An AI/ML Engineer focused on high-performance distributed systems, optimized inference engines, and automated workflows.
               </p>
-              <p className="opacity-60 text-lg">
-                My objective is simple: reduce complex problems to elegant code. I build at the intersection of production robustness and theoretical depth.
+              <p className={`text-base md:text-lg ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} leading-relaxed font-medium`}>
+                My objective is simple: reduce complex, multi-modal problems to elegant, scalable, and testable code. I build at the intersection of production robustness and deep learning depth, ensuring models are not just trained, but reliably served at scale.
               </p>
             </div>
 
-            
-            <div className="hidden md:flex flex-col gap-8 uppercase font-black text-black leading-[1.1] tracking-tight max-w-none">
-              <p className="text-5xl lg:text-6xl text-[#891A20]">
-                Engineering intelligence.
-              </p>
-              <p className="opacity-80 text-3xl lg:text-4xl">
-                I am Kabir Thayani. An AI/ML Engineer focused on high-performance distributed systems and automated reasoning.
-              </p>
-              <p className="opacity-60 text-2xl lg:text-3xl lg:w-4/5">
-                My objective is simple: reduce complex problems to elegant code. I build at the intersection of production robustness and theoretical depth.
-              </p>
-            </div>
-
-            
-            <div className="border-t border-black pt-12 md:pt-20">
-              <h2 className="text-2xl md:text-5xl tracking-tighter mb-8 md:mb-12 flex items-center gap-3 md:gap-4">
-                <span className="w-3 h-3 md:w-4 md:h-4 bg-[#891A20]" />
+            {/* Experience Section */}
+            <div className="border-t border-zinc-200 dark:border-zinc-800 pt-12 md:pt-16">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-8 flex items-center gap-3">
+                <span className="w-2.5 h-2.5 bg-zinc-900 dark:bg-zinc-100 rounded-sm" />
                 Experience Chronicle
               </h2>
               <Timeline items={experience} />
             </div>
           </div>
 
-          
-          <div className="lg:col-span-4 flex flex-col gap-8 md:gap-12">
-
+          {/* Sidebar */}
+          <div className="lg:col-span-4 flex flex-col gap-6 md:gap-8">
             
-            <div className="border border-black overflow-hidden flex flex-col">
-              <div className="h-64 md:h-80 w-full overflow-hidden border-b border-black">
+            {/* Profile Image & Metadata Card */}
+            <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden flex flex-col">
+              <div className="h-64 md:h-80 w-full overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
                 <img
                   src="/profile.jpg"
                   alt="Kabir Thayani"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
-              <div className="p-4 md:p-6 flex flex-col gap-2">
-                <h3 className="text-xl md:text-2xl tracking-tighter">KABIR THAYANI</h3>
-                <span className="text-xs md:text-sm opacity-60 normal-case">AI Researcher & Distributed Systems Engineer</span>
-                <span className="text-xs opacity-40 mt-2 tracking-widest uppercase">📍 Gujarat, India / Remote</span>
+              <div className="p-6 flex flex-col gap-2 bg-zinc-50/50 dark:bg-zinc-950/20">
+                <h3 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Kabir Thayani</h3>
+                <span className="text-xs font-semibold text-zinc-500">AI Researcher & Backend Developer</span>
+                <span className="text-xs opacity-50 mt-1 font-semibold tracking-wide">📍 Gujarat, India // Remote</span>
               </div>
             </div>
 
-            
-            <div className="border border-black p-6 md:p-8">
-              <h3 className="text-xs md:text-sm tracking-widest mb-6 md:mb-8 opacity-60">Status</h3>
-              <div className="flex items-center gap-4 mb-8 md:mb-12">
-                <div className="w-3 h-3 bg-[#891A20] animate-pulse" />
-                <span className="text-lg md:text-xl">Available for AI Roles</span>
+            {/* Status Card */}
+            <div className="border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg bg-zinc-50/30 dark:bg-zinc-950/10">
+              <h3 className="text-[10px] tracking-[0.2em] uppercase mb-4 opacity-50 font-bold">Status</h3>
+              <div className="flex items-center gap-2.5 mb-6">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-base font-bold text-zinc-900 dark:text-zinc-100">Available for AI Roles</span>
               </div>
 
-              <ul className="space-y-4 md:space-y-6">
-                {["Deep Learning", "LLM Ops", "Full Stack", "n8n Automation"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 md:gap-4 text-[10px] md:text-xs tracking-widest border-b border-black/10 pb-3 md:pb-4">
-                    <span className="text-[#891A20]">→</span> {item}
+              <ul className="space-y-3">
+                {["Deep Learning / PyTorch", "LLMOps / FAISS", "Distributed Training", "Agentic Systems"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2.5 text-xs font-semibold border-b border-zinc-100 dark:border-zinc-900/50 pb-2.5 last:border-b-0 last:pb-0 text-zinc-600 dark:text-zinc-400">
+                    <span className="text-zinc-300 dark:text-zinc-700">{"/*"}</span> {item} <span className="text-zinc-300 dark:text-zinc-700">{"*/"}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            
+            {/* Resume Download */}
             <a
               href="/KabirThayani.pdf"
               download="Kabir_Thayani_Resume.pdf"
-              className="block border border-black p-6 md:p-8 group hover:bg-black hover:text-white transition-colors duration-500 cursor-pointer"
+              className="block cursor-pointer group"
             >
-              <h3 className="text-md md:text-lg mb-2 md:mb-4">Resume.pdf</h3>
-              <p className="text-[10px] md:text-xs tracking-widest opacity-60 mb-6 md:mb-8 font-medium">Updated April 2026</p>
-              <div className="text-2xl md:text-3xl tracking-tighter group-hover:translate-y-1 transition-transform">Download ↓</div>
+              <div className="border border-zinc-200 dark:border-zinc-800 p-6 rounded-lg hover:bg-zinc-100/50 dark:hover:bg-zinc-900/25 transition-all">
+                <h3 className="text-sm font-bold mb-1 text-zinc-900 dark:text-zinc-100">Resume.pdf</h3>
+                <p className="text-[10px] text-zinc-400 dark:text-zinc-500 mb-6 font-semibold">Updated April 2026</p>
+                <div className="text-xs font-bold tracking-wider uppercase text-zinc-900 dark:text-zinc-100 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5">
+                  Download resume <span>→</span>
+                </div>
+              </div>
             </a>
 
-            
+            {/* Quick Links */}
             <div className="grid grid-cols-2 gap-4">
-              <Link to="/contact" className="border border-black p-5 text-center hover:bg-[#891A20] hover:text-white hover:border-[#891A20] transition-all">
-                <span className="text-[10px] md:text-xs tracking-widest">CONTACT</span>
+              <Link to="/contact" className="w-full">
+                <div className="border border-zinc-200 dark:border-zinc-800 p-3.5 rounded-lg text-center hover:bg-zinc-900 hover:text-zinc-100 dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all font-bold text-[10px] tracking-wider uppercase">
+                  Contact
+                </div>
               </Link>
-              <Link to="/projects" className="border border-black p-5 text-center hover:bg-black hover:text-white transition-all">
-                <span className="text-[10px] md:text-xs tracking-widest">WORK</span>
+              <Link to="/projects" className="w-full">
+                <div className="border border-zinc-200 dark:border-zinc-800 p-3.5 rounded-lg text-center hover:bg-zinc-900 hover:text-zinc-100 dark:hover:bg-zinc-100 dark:hover:text-zinc-900 transition-all font-bold text-[10px] tracking-wider uppercase">
+                  Work
+                </div>
               </Link>
             </div>
           </div>
