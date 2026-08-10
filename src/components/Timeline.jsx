@@ -2,37 +2,29 @@ import { motion } from "framer-motion";
 
 const Timeline = ({ items }) => {
     return (
-        <div className="relative ml-3 md:ml-6 my-12 space-y-12">
-            {/* Minimal solid timeline line */}
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-zinc-200 dark:bg-zinc-800" />
-            
+        <div className="relative ml-3 md:ml-5 my-8 space-y-8">
+            {/* Spine */}
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-linear-to-b from-indigo-500 via-indigo-200 to-transparent dark:via-indigo-800" />
+
             {items.map((item, index) => (
                 <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    transition={{ duration: 0.35, delay: index * 0.08 }}
                     className="ml-8 relative group"
                 >
-                    {/* Minimal timeline indicator dot */}
-                    <span className="absolute -left-9 top-3 w-2.5 h-2.5 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 group-hover:bg-zinc-900 dark:group-hover:bg-zinc-100 transition-colors" />
+                    {/* Dot */}
+                    <span className="absolute -left-9 top-4 w-2.5 h-2.5 rounded-full bg-white dark:bg-[#0D1117] border-2 border-indigo-400 dark:border-indigo-500 group-hover:bg-indigo-500 transition-colors" />
 
-                    <div className="border border-zinc-200 dark:border-zinc-800 p-6 md:p-8 rounded-lg hover:bg-zinc-500/5 transition-all duration-200">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
-                            <h3 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                                {item.role}
-                            </h3>
-                            <span className="pill self-start sm:self-auto">
-                                {item.period}
-                            </span>
+                    <div className="card p-6 md:p-8">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2">
+                            <h3 className="text-lg font-bold text-[#0F172A] dark:text-white">{item.role}</h3>
+                            <span className="pill shrink-0 self-start">{item.period}</span>
                         </div>
-                        <p className="text-sm font-bold text-zinc-700 dark:text-zinc-300 mb-3">
-                            {item.company}
-                        </p>
-                        <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed text-xs md:text-sm font-semibold max-w-2xl">
-                            {item.description}
-                        </p>
+                        <p className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 mb-3">{item.company}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
                     </div>
                 </motion.div>
             ))}

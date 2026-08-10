@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 const SEO = ({ title, description, image, url }) => {
     const { pathname } = useLocation();
     const siteUrl = "https://kabirofficial.github.io/KabirPortfolio";
-    const defaultTitle = "Kabir — Portfolio";
+    const defaultTitle = "Kabir Thayani | Portfolio";
     const defaultDescription = "AI/ML Engineer & Python Developer. Showcasing projects, skills, and experience in building intelligent, scalable solutions.";
     const defaultImage = `${siteUrl}/profile.jpg`;
 
@@ -29,19 +29,15 @@ const SEO = ({ title, description, image, url }) => {
         };
 
         Object.entries(metaTags).forEach(([name, content]) => {
-            
             let element = document.querySelector(`meta[name="${name}"]`);
             if (!element) {
-                
                 element = document.querySelector(`meta[property="${name}"]`);
             }
-
             if (element) {
                 element.setAttribute("content", content);
             }
         });
 
-        
         let canonical = document.querySelector("link[rel='canonical']");
         if (canonical) {
             canonical.setAttribute("href", finalUrl);

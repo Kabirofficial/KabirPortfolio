@@ -18,11 +18,16 @@ function App() {
   return (
     <SmoothScroll>
       <div className={`relative min-h-screen flex flex-col transition-colors duration-300 ${
-        theme === 'dark' 
-          ? 'bg-[#0e0e11] text-zinc-100' 
-          : 'bg-[#fafaf9] text-zinc-900'
+        theme === 'dark'
+          ? 'bg-[#0D1117] text-[#E2E8F0]'
+          : 'bg-white text-[#0F172A]'
       }`}>
-        <CommandPalette />
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          <img src="/bg_visual.png" alt="" className="w-full h-full object-cover opacity-[0.03] dark:opacity-[0.15]" />
+        </div>
+        
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <CommandPalette />
         <ScrollProgress />
 
         <AnimatePresence mode="wait">
@@ -38,9 +43,10 @@ function App() {
                </AnimatePresence>
              </main>
              <Footer />
-             <ScrollToTopButton />
-           </>
-        )}
+              <ScrollToTopButton />
+            </>
+         )}
+        </div>
       </div>
     </SmoothScroll>
   );

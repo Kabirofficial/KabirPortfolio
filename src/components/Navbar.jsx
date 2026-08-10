@@ -7,98 +7,97 @@ import { NAV_ITEMS } from "../utils/constants";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  useEffect(() => { setIsOpen(false); }, [pathname]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 h-16 md:h-20 bg-[#fafaf9] dark:bg-[#0e0e11] border-b border-zinc-200 dark:border-zinc-800 transition-colors duration-300">
-      <div className="h-full px-6 md:px-12 flex items-center justify-between">
-        
-        {/* Brand Logo */}
-        <Link
-          to="/"
-          className="flex items-center gap-4 group z-50"
-        >
-          <div className="text-lg md:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Kabir <span className="text-zinc-400 dark:text-zinc-500 font-medium">Thayani</span>
-          </div>
+    <header className={`fixed top-0 inset-x-0 z-50 h-16 md:h-[70px] transition-all duration-300 ${
+      scrolled
+        ? "bg-white/90 dark:bg-[#0D1117]/90 backdrop-blur-md border-b border-[#E2E8F0] dark:border-[#21262D] shadow-sm"
+        : "bg-white dark:bg-[#0D1117] border-b border-[#E2E8F0] dark:border-[#21262D]"
+    }`}>
+      <div className="h-full px-6 md:px-12 flex items-center justify-between max-w-7xl mx-auto">
+
+        {/* Brand */}
+        <Link to="/" className="flex items-center gap-2 z-50 group">
+          <img src="/icon.png" alt="Kabir Logo" className="w-7 h-7 rounded-lg object-cover shadow-sm" />
+          <span className="text-sm font-bold text-[#0F172A] dark:text-[#E2E8F0] tracking-tight">
+            Kabir <span className="text-indigo-500">Thayani</span>
+          </span>
         </Link>
 
-        {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center gap-8">
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-1">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `text-[11px] font-semibold uppercase tracking-[0.2em] transition-colors duration-200 ${
-                  isActive 
-                    ? "text-zinc-900 dark:text-zinc-100" 
-                    : "text-zinc-400 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100"
+                `px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all duration-150 ${
+                  isActive
+                    ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5"
                 }`
               }
             >
               {item.label}
             </NavLink>
           ))}
-          <div className="w-px h-4 bg-zinc-200 dark:bg-zinc-800" />
-          <ThemeToggle />
         </nav>
 
-        {/* Right Info & Toggle */}
-        <div className="flex items-center gap-6 md:gap-8 z-50">
-          <div className="hidden sm:block lg:hidden">
-            <ThemeToggle />
-          </div>
-          <div className="hidden sm:block text-xs font-mono text-zinc-400 dark:text-zinc-500">
+        {/* Right side */}
+        <div className="flex items-center gap-3 z-50">
+          <div className="hidden sm:block text-xs text-slate-400 dark:text-slate-500 font-mono">
             <Clock />
           </div>
-          
-          <button 
+          <div className="hidden sm:block lg:block">
+            <ThemeToggle />
+          </div>
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+            className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg border border-[#E2E8F0] dark:border-[#21262D] text-slate-600 dark:text-slate-300 hover:border-indigo-400 transition-colors"
           >
-            {isOpen ? "Close" : "Menu"}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile Fullscreen Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-0 bg-[#fafaf9] dark:bg-[#0e0e11] text-zinc-900 dark:text-zinc-100 z-40 flex flex-col justify-between pt-24 pb-12 px-6 md:px-12 transition-colors duration-300"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-white dark:bg-[#0D1117] z-40 flex flex-col pt-20 pb-10 px-6 overflow-y-auto"
           >
-            <div className="flex flex-col gap-4 mt-8">
-              {NAV_ITEMS.map((item, index) => (
-                <motion.div
-                  key={item.to}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
-                >
+            <div className="flex flex-col gap-1 mt-4">
+              {NAV_ITEMS.map((item, i) => (
+                <motion.div key={item.to} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `block text-4xl md:text-5xl font-bold tracking-tight py-2 border-b border-zinc-100 dark:border-zinc-900/50 ${
-                        isActive 
-                          ? "text-zinc-900 dark:text-zinc-100" 
-                          : "text-zinc-300 dark:text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100"
+                      `block px-4 py-3.5 rounded-xl text-lg font-semibold transition-all ${
+                        isActive
+                          ? "bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400"
+                          : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/5"
                       }`
                     }
                   >
@@ -108,16 +107,14 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex flex-col gap-6 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-              <div className="flex flex-col sm:flex-row justify-between gap-4">
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-500 font-bold">Connect</span>
-                  <a href="mailto:thayanikabir.official@gmail.com" className="text-base font-semibold hover:underline">thayanikabir.official@gmail.com</a>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <a href="https://www.linkedin.com/in/thayanikabir/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">LinkedIn</a>
-                  <a href="https://github.com/Kabirofficial" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors">GitHub</a>
-                </div>
+            <div className="mt-auto pt-8 border-t border-[#E2E8F0] dark:border-[#21262D]">
+              <p className="text-xs text-slate-400 dark:text-slate-500 mb-3 font-mono">Get in touch</p>
+              <a href="mailto:thayanikabir.official@gmail.com" className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline block mb-4">
+                thayanikabir.official@gmail.com
+              </a>
+              <div className="flex gap-4">
+                <a href="https://linkedin.com/in/thayanikabir/" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">LinkedIn</a>
+                <a href="https://github.com/Kabirofficial" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">GitHub</a>
               </div>
             </div>
           </motion.div>

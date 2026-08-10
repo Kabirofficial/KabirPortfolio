@@ -13,7 +13,7 @@ export const projectsData = [
     id: "breast-cancer-detection",
     title: "Breast Cancer Detection",
     description:
-      "My first step into Machine Learning — a predictive model for early breast cancer detection using Python and Flask.",
+      "My first step into Machine Learning. A predictive model for early breast cancer detection using Python and Flask.",
     longDescription:
       "This project marked the beginning of my ML journey. I built a breast cancer prediction model using Scikit-learn and Logistic Regression. The model analyzes patient data to classify whether a case is malignant or benign. Deployed with Flask for an interactive web interface. Key learnings: data preprocessing, feature scaling, and model deployment using real-world datasets.",
     tags: ["Python", "Flask", "Scikit-learn", "Data Science", "ML"],
@@ -37,7 +37,7 @@ export const projectsData = [
     description:
       "A text classification model that detects whether a message is Spam or Not Spam (Ham).",
     longDescription:
-      "Developed a spam message detection system using multiple algorithms — Naive Bayes (GaussianNB, MultinomialNB, BernoulliNB) and Logistic Regression — to compare model performance. Focused on text preprocessing (stopword removal, TF-IDF vectorization) and model evaluation through precision, recall, and confusion matrix analysis. Outcome: a fully functional spam filter for real-world text inputs.",
+      "Developed a spam message detection system using multiple algorithms (Naive Bayes: GaussianNB, MultinomialNB, BernoulliNB) and Logistic Regression to compare model performance. Focused on text preprocessing (stopword removal, TF-IDF vectorization) and model evaluation through precision, recall, and confusion matrix analysis. Outcome: a fully functional spam filter for real-world text inputs.",
     tags: [
       "Python",
       "NLP",

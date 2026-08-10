@@ -1,8 +1,8 @@
 export const education = [
   {
     degree: 'Master of Science in Artificial Intelligence / Machine Learning',
-    school: 'Target: Leading Canadian University (Western / UBC / Waterloo)',
-    period: 'Projected: 2026 - 2028',
+    school: 'Target: Leading Canadian University SFU',
+    period: 'Projected: 2027 - 2029',
     description:
       'Projected specialization in Distributed Intelligence and Large Language Systems. Researching the frontiers of automated reasoning, multi-modal alignment, and high-performance neural architectures. Aiming to bridge the gap between theoretical ML breakthroughs and production-grade AI infrastructure.',
   },
