@@ -1,6 +1,7 @@
 export const projectsData = [
   {
     id: "anisystem",
+    category: "WEB_APP",
     title: "AniSystem",
     description: "A backendless anime and media tracking web application that helps track upcoming releases, manage watchlists, and view weekly schedules.",
     longDescription:
@@ -11,6 +12,7 @@ export const projectsData = [
   },
   {
     id: "breast-cancer-detection",
+    category: "DATA_SCIENCE",
     title: "Breast Cancer Detection",
     description:
       "My first step into Machine Learning. A predictive model for early breast cancer detection using Python and Flask.",
@@ -22,6 +24,7 @@ export const projectsData = [
   },
   {
     id: "movie-recommendation-system",
+    category: "DATA_SCIENCE",
     title: "Movie Recommendation System",
     description:
       "An ML-powered movie recommender using TF-IDF and cosine similarity to suggest movies based on user preference.",
@@ -33,6 +36,7 @@ export const projectsData = [
   },
   {
     id: "spam-classifier",
+    category: "DATA_SCIENCE",
     title: "Spam Message Classifier",
     description:
       "A text classification model that detects whether a message is Spam or Not Spam (Ham).",
@@ -50,6 +54,7 @@ export const projectsData = [
   },
   {
     id: "rag-bot",
+    category: "AI_AGENT",
     title: "JinggStack AI Bot (RAG Chatbot)",
     description:
       "An intelligent chatbot that answers document-based questions using Retrieval-Augmented Generation (RAG).",
@@ -61,6 +66,7 @@ export const projectsData = [
   },
   {
     id: "syllaby",
+    category: "AI_APP",
     title: "Syllaby – AI Study Planner",
     description:
       "An AI-powered personal study planner that adapts to your learning style and academic schedule.",
@@ -80,6 +86,7 @@ export const projectsData = [
   },
   {
     id: "ai-automation-suite",
+    category: "AI_AGENT",
     title: "AI Automation Tools for Business",
     description:
       "A suite of AI-powered automation tools that streamline workflows for HR, email, and marketing teams.",
@@ -91,6 +98,7 @@ export const projectsData = [
   },
   {
     id: "snfilmz-portfolio",
+    category: "WEB_APP",
     title: "SnFilmz Portfolio Website",
     description:
       "A professional portfolio website for SnFilmz showcasing creative reel and photography projects.",
@@ -109,6 +117,7 @@ export const projectsData = [
   },
   {
     id: "civiclens",
+    category: "COMPUTER_VISION",
     title: "CivicLens – AI Pothole Detection & Reporting System",
     description:
       "An AI-powered system that detects road potholes and helps report them with location data for smarter city maintenance.",
@@ -120,6 +129,7 @@ export const projectsData = [
   },
   {
     id: "ai-resume-screening",
+    category: "AI_APP",
     title: "AI Resume Screening System (ATS + RAG)",
     description:
       "An AI-powered resume screening system that analyzes and ranks resumes using semantic understanding.",
@@ -131,6 +141,7 @@ export const projectsData = [
   },
   {
     id: "helmet-detection",
+    category: "COMPUTER_VISION",
     title: "Helmet / No-Helmet Detection System",
     description:
       "A computer vision system that detects whether a rider is wearing a helmet or not from images or video.",
@@ -148,6 +159,7 @@ export const projectsData = [
   },
   {
     id: "yumyard",
+    category: "WEB_APP",
     title: "YumYard – Recipe Sharing MERN App",
     description:
       "A full-stack recipe sharing platform where users can create, browse, and share recipes.",
@@ -159,6 +171,7 @@ export const projectsData = [
   },
   {
     id: "nanoray-v2",
+    category: "RESEARCH",
     title: "NanoRay-v2: Bridging the Gap Between Transformers and Edge AI",
     description:
       "A research paper on optimizing Transformer models for Edge AI deployment via Cross-Architecture Distillation.",
@@ -177,6 +190,7 @@ export const projectsData = [
   },
   {
     id: "breaking-geometric-bottleneck",
+    category: "RESEARCH",
     title: "Breaking the Geometric Bottleneck: Contrastive Expansion in Asymmetric Cross-Modal Distillation",
     description:
       "An investigation into Dimensional Collapse when distilling global Vision Transformers (CLIP, DINOv2) into capacity-constrained CNNs.",

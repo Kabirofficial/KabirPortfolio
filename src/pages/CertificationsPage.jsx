@@ -1,56 +1,64 @@
-import { motion } from "framer-motion";
-import { certifications } from "../data/certifications";
-import SEO from "../components/SEO";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { certifications } from '../data/certifications';
+import SEO from '../components/SEO';
 
 const CertificationsPage = () => {
   return (
-    <div className="min-h-screen pt-20">
-      <SEO title="Certifications" />
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-20">
-
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-          className="border-b border-[#E2E8F0] dark:border-[#21262D] pb-10 mb-14">
-          <p className="text-xs font-mono font-semibold text-indigo-500 uppercase tracking-widest mb-3">Certifications</p>
-          <h1 className="text-huge font-bold text-[#0F172A] dark:text-white leading-none">
-            Things I&apos;ve <span className="gradient-text">learned.</span>
-          </h1>
-          <p className="text-base text-slate-500 dark:text-slate-400 mt-4 max-w-xl font-medium">
-            Verified credentials from platforms and institutions I respect.
-          </p>
+    <section id="certifications" className="min-h-screen flex items-center relative px-6 md:px-24 py-24">
+      <SEO title="Certifications" description="Verified credentials and certifications." />
+      <div className="max-w-6xl w-full z-10 flex flex-col gap-12 mx-auto">
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col gap-2 mb-4"
+        >
+          <h3 className="terminal-text text-os-cyan">MODULE 05 // CERTIFICATIONS</h3>
+          <h2 className="text-4xl md:text-5xl font-bold">Verified Credentials</h2>
         </motion.div>
 
-        <div className="flex flex-col gap-3">
-          {certifications.map((cert, index) => (
-            <motion.div key={index}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.04 }}>
-              <a href={cert.url} target="_blank" rel="noopener noreferrer" className="group block">
-                <div className="card p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[10px] font-mono font-semibold text-slate-400 dark:text-slate-500">{cert.date}</span>
-                      <span className="text-[10px] text-slate-300 dark:text-slate-600">·</span>
-                      <span className="text-[10px] font-mono font-bold text-indigo-500">{cert.issuer}</span>
-                    </div>
-                    <h2 className="text-base font-bold text-[#0F172A] dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                      {cert.title}
-                    </h2>
-                    {cert.credentialId && (
-                      <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">ID: {cert.credentialId}</span>
-                    )}
+        <div className="flex flex-col gap-4">
+          {certifications.map((cert, index) => {
+            const isPending = cert.url === '#';
+            const Wrapper = isPending ? motion.div : motion.a;
+            
+            return (
+              <Wrapper
+                {...(!isPending && { href: cert.url, target: "_blank", rel: "noopener noreferrer" })}
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className={`os-glass p-6 border transition-colors flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${
+                  isPending ? 'border-os-border/30 opacity-70' : 'border-os-border/50 hover:border-os-cyan/50 group cursor-pointer'
+                }`}
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-os-text-secondary font-mono text-xs">{cert.date}</span>
+                    <span className="text-os-border">|</span>
+                    <span className="text-os-cyan font-mono text-xs font-bold">{cert.issuer}</span>
                   </div>
-                  <div className="text-xs font-semibold text-indigo-500 dark:text-indigo-400 group-hover:translate-x-1 transition-transform flex items-center gap-1 whitespace-nowrap shrink-0">
-                    Verify →
-                  </div>
+                  <h3 className={`text-lg font-bold transition-colors ${isPending ? 'text-white' : 'text-white group-hover:text-os-cyan'}`}>
+                    {cert.title}
+                  </h3>
+                  {cert.credentialId && (
+                    <span className="font-mono text-[10px] text-os-text-muted">ID: {cert.credentialId}</span>
+                  )}
                 </div>
-              </a>
-            </motion.div>
-          ))}
+                <div className={`terminal-text whitespace-nowrap ${isPending ? 'text-os-text-muted text-[10px]' : 'text-os-cyan opacity-0 group-hover:opacity-100 transition-opacity'}`}>
+                  {isPending ? '[ PENDING VERIFICATION ]' : '[ VERIFY ]'}
+                </div>
+              </Wrapper>
+            );
+          })}
         </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

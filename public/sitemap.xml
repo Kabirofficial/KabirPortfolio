@@ -6,7 +6,12 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/about</loc>
+    <loc>https://kabirofficial.github.io/KabirPortfolio/identity</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kabirofficial.github.io/KabirPortfolio/research</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -16,97 +21,22 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/experience</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/education</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kabirofficial.github.io/KabirPortfolio/certifications</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/skills</loc>
+    <loc>https://kabirofficial.github.io/KabirPortfolio/stack</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kabirofficial.github.io/KabirPortfolio/journey</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kabirofficial.github.io/KabirPortfolio/contact</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/anisystem</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/breast-cancer-detection</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/movie-recommendation-system</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/spam-classifier</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/rag-bot</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/syllaby</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/ai-automation-suite</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/snfilmz-portfolio</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/civiclens</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/ai-resume-screening</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/helmet-detection</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/yumyard</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/nanoray-v2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kabirofficial.github.io/KabirPortfolio/projects/breaking-geometric-bottleneck</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
