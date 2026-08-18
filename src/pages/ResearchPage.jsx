@@ -9,10 +9,10 @@ const ResearchPage = () => {
   return (
     <section id="research" className="min-h-screen flex flex-col items-center relative px-6 md:px-24 py-24 gap-24">
       <SEO title="Research" description="Publications and AI/ML papers by Kabir Thayani." />
-      
+
       {/* Header */}
       <div className="max-w-6xl w-full z-10 flex flex-col gap-2">
-        <h3 className="terminal-text text-os-cyan">MODULE 01 // RESEARCH</h3>
+        <h3 className="terminal-text text-os-cyan">RESEARCH</h3>
         <h2 className="text-4xl md:text-5xl font-bold">Publications & Papers</h2>
       </div>
 
@@ -36,7 +36,7 @@ const ResearchPage = () => {
               <p className="text-sm text-os-text-primary leading-relaxed font-mono">
                 {project.longDescription || project.description}
               </p>
-              
+
               <div className="flex flex-wrap gap-2 mt-6">
                 {project.tags.map(tag => (
                   <span key={tag} className="px-2 py-1 bg-os-border/50 text-[10px] font-mono text-os-cyan rounded-sm">

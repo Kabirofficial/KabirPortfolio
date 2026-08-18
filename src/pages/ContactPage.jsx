@@ -7,7 +7,7 @@ const ContactPage = () => {
     <section id="contact" className="min-h-[80vh] flex items-center relative px-6 md:px-24 py-24">
       <SEO title="Contact" description="Establish connection and schedule a meeting." />
       <div className="max-w-2xl w-full z-10 flex flex-col gap-12 mx-auto text-center">
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
