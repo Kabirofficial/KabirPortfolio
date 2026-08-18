@@ -8,14 +8,14 @@ const TechStackPage = () => {
     <section id="stack" className="min-h-screen flex items-center relative px-6 md:px-24 py-24">
       <SEO title="Tech Stack" description="System capabilities and technical skills." />
       <div className="max-w-6xl w-full z-10 flex flex-col gap-16 mx-auto">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="flex flex-col gap-2"
         >
-          <h3 className="terminal-text text-os-green">MODULE 04 // TECH_STACK</h3>
+          <h3 className="terminal-text text-os-green">TECH_STACK</h3>
           <h2 className="text-4xl md:text-5xl font-bold">System Capabilities</h2>
         </motion.div>
 
@@ -32,7 +32,7 @@ const TechStackPage = () => {
               <h4 className="font-mono text-sm text-white border-b border-os-border/50 pb-2">
                 &gt; {category.title.toUpperCase()}
               </h4>
-              
+
               <div className="flex flex-wrap gap-3">
                 {category.items.map((item, j) => (
                   <motion.div
