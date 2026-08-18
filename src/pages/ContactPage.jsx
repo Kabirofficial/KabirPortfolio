@@ -29,7 +29,7 @@ const ContactPage = () => {
             <a href="https://calendly.com/thayanikabir-official" target="_blank" rel="noreferrer" className="btn-os btn-os-primary justify-center">
               [ SCHEDULE_MEETING ]
             </a>
-            <a href="mailto:thayanikabir@gmail.com" className="btn-os justify-center">
+            <a href="mailto:thayanikabir.official@gmail.com" className="btn-os justify-center">
               [ INITIATE EMAIL ]
             </a>
             <a href="https://github.com/Kabirofficial" target="_blank" rel="noreferrer" className="btn-os justify-center">
